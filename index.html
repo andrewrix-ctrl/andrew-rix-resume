@@ -37,6 +37,23 @@ body{
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
+/* subtle slowly-shifting colour wash behind everything */
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(125deg,
+    rgba(94,199,207,.09),
+    rgba(139,108,255,.07),
+    rgba(94,199,207,.05),
+    rgba(139,108,255,.09));
+  background-size:300% 300%;
+  animation:bgWash 32s ease-in-out infinite;
+}
+@keyframes bgWash{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 ::selection{background:var(--teal);color:var(--ink)}
 
 /* ---------- layout shell ---------- */
@@ -260,11 +277,13 @@ footer{margin-top:48px;text-align:center;color:var(--muted-2);font-size:.8rem}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .card:hover,.btn:hover{transform:none}
+  body::before{animation:none}
 }
 
 /* print */
 @media print{
   body{background:#fff;color:#111}
+  body::before{display:none}
   aside,.mobile-top,.cta .row{display:none}
   .shell{display:block}
   main{padding:0}
