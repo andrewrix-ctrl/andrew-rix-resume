@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew Rix · AI-Native Practice Lead</title>
+<script>
+/* Apply saved/system colour scheme before paint to avoid a flash */
+(function(){try{var s=localStorage.getItem('theme');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches;var t=s||(p?'light':'dark');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();
+</script>
+<meta name="description" content="Andrew Rix, AI-Native Practice Lead. AI-Native Trainer, SPCT, SAFe transformation architect. Sydney, Australia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c1522;
+  --panel:#111e30;
+  --panel-2:#16263c;
+  --line:#23354d;
+  --teal:#5ec7cf;
+  --teal-deep:#2e8f97;
+  --violet:#8b6cff;
+  --paper:#f2f6f8;
+  --muted:#93a7bb;
+  --muted-2:#6b8097;
+  --display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --body:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--teal);color:var(--ink)}
+
+/* ---------- layout shell ---------- */
+.shell{display:grid;grid-template-columns:300px 1fr;min-height:100vh;max-width:1280px;margin:0 auto}
+
+/* ---------- sidebar / nav ---------- */
+aside{
+  position:sticky;top:0;height:100vh;
+  padding:44px 32px 32px;
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:28px;
+  overflow-y:auto;
+}
+.portrait{
+  width:128px;height:128px;border-radius:50%;
+  object-fit:cover;object-position:center 20%;
+  border:3px solid var(--teal);
+  box-shadow:0 0 0 6px rgba(94,199,207,.12);
+}
+.id h1{font-family:var(--display);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.id .role{color:var(--teal);font-size:.95rem;font-weight:500;margin-top:6px}
+.id .loc{color:var(--muted);font-size:.85rem;margin-top:4px}
+nav{display:flex;flex-direction:column;gap:2px}
+nav a{
+  color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;
+  padding:9px 12px;border-radius:8px;border-left:2px solid transparent;
+  transition:color .18s,background .18s,border-color .18s;
+}
+nav a:hover{color:var(--paper);background:var(--panel)}
+nav a.active{color:var(--teal);border-left-color:var(--teal);background:var(--panel)}
+.contact{display:flex;flex-direction:column;gap:8px;font-size:.86rem}
+.contact a{color:var(--muted);text-decoration:none;transition:color .18s}
+.contact a:hover{color:var(--teal)}
+.contact .lbl{color:var(--muted-2);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+.side-badges{margin-top:auto;display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
+.side-badges img{height:62px;width:auto}
+.side-badges img.rounded{border-radius:10px}
+
+/* ---------- main ---------- */
+main{padding:0 56px 80px;min-width:0}
+section{padding-top:72px;scroll-margin-top:16px}
+.eyebrow{
+  font-family:var(--display);font-size:.74rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--teal);
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.eyebrow::after{content:"";height:1px;flex:1;background:var(--line)}
+
+/* hero */
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding-top:48px}
+.hero h2{
+  font-family:var(--display);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.12;max-width:17ch;
+}
+.hero h2 em{font-style:normal;color:var(--teal)}
+.hero p.lede{max-width:58ch;color:var(--muted);margin-top:22px;font-size:1.05rem}
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:44px}
+.proof div{background:var(--panel);padding:18px 20px}
+.proof b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--paper)}
+.proof span{font-size:.8rem;color:var(--muted)}
+.proof .hl b{color:var(--teal)}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:40px;align-items:start}
+.about-grid p+p{margin-top:14px}
+.about-grid p{color:#c6d3de}
+.credo{
+  background:linear-gradient(135deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line);border-left:3px solid var(--violet);
+  border-radius:12px;padding:24px;font-size:.95rem;color:var(--muted);
+}
+.credo b{color:var(--paper);font-family:var(--display)}
+
+/* highlights */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:22px 24px;transition:transform .2s,border-color .2s;
+}
+.card:hover{transform:translateY(-3px);border-color:var(--teal-deep)}
+.card .k{font-family:var(--display);font-weight:600;font-size:1.02rem;color:var(--teal);margin-bottom:8px}
+.card p{font-size:.92rem;color:var(--muted)}
+
+/* timeline = value stream */
+.stream{position:relative;margin-top:8px}
+.stream::before{
+  content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(var(--teal),var(--violet));opacity:.55;
+}
+.stop{position:relative;padding:0 0 40px 44px}
+.stop:last-child{padding-bottom:0}
+.stop::before{
+  content:"";position:absolute;left:0;top:7px;width:20px;height:20px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--teal);
+}
+.stop.violet::before{border-color:var(--violet)}
+.stop .when{font-family:var(--display);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2)}
+.stop h3{font-family:var(--display);font-size:1.18rem;font-weight:600;letter-spacing:-.01em;margin:6px 0 2px}
+.stop .org{color:var(--teal);font-size:.9rem;font-weight:500;margin-bottom:10px}
+.stop p{color:#bfccd8;font-size:.95rem;max-width:68ch}
+.stop .ach{margin-top:10px;padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;font-size:.9rem;color:var(--muted);max-width:68ch}
+.stop .ach b{color:var(--teal);font-family:var(--display);font-size:.74rem;text-transform:uppercase;letter-spacing:.16em;display:block;margin-bottom:6px}
+.earlier{margin-top:36px;padding:20px 24px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.9rem}
+.earlier b{color:var(--paper)}
+
+/* skills */
+.skill-rows{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  font-family:var(--display);font-size:.88rem;font-weight:500;
+  padding:9px 16px;border-radius:100px;border:1px solid var(--line);
+  background:var(--panel);color:#cfdae4;
+}
+.chip.ai{border-color:rgba(139,108,255,.5);color:#c9bcff}
+
+/* certs */
+.cert-grid{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:start}
+.badge-wall{display:flex;flex-direction:column;gap:16px;align-items:center}
+.badge-wall img.spct{height:150px}
+.badge-wall img.trainer{height:130px;border-radius:14px}
+.cert-list{list-style:none}
+.cert-list li{
+  padding:13px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:18px;font-size:.95rem;
+}
+.cert-list li span{color:var(--muted-2);font-size:.84rem;white-space:nowrap;padding-top:2px}
+.cert-list li:first-child b{color:var(--teal)}
+.cert-list b{font-weight:600;font-family:var(--display)}
+.cert-note{margin-top:14px;font-size:.86rem;color:var(--muted)}
+
+/* contact */
+.cta{
+  margin-top:8px;background:linear-gradient(135deg,var(--panel-2),var(--panel));
+  border:1px solid var(--line);border-radius:18px;padding:44px;text-align:center;
+}
+.cta h2{font-family:var(--display);font-size:1.8rem;font-weight:700;letter-spacing:-.02em}
+.cta p{color:var(--muted);margin:12px auto 26px;max-width:46ch}
+.cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  font-family:var(--display);font-weight:600;font-size:.95rem;text-decoration:none;
+  padding:13px 26px;border-radius:100px;transition:transform .18s,box-shadow .18s;
+}
+.btn.primary{background:var(--teal);color:var(--ink)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(94,199,207,.3)}
+.btn.ghost{border:1px solid var(--line);color:var(--paper)}
+.btn.ghost:hover{border-color:var(--teal);color:var(--teal)}
+footer{margin-top:48px;text-align:center;color:var(--muted-2);font-size:.8rem}
+
+/* mobile header */
+.mobile-top{display:none}
+
+@media (max-width:900px){
+  .shell{display:block}
+  aside{display:none}
+  .mobile-top{
+    display:block;position:sticky;top:0;z-index:50;
+    background:rgba(12,21,34,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-top .bar{display:flex;align-items:center;gap:12px;padding:12px 20px}
+  .mobile-top img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center 20%;border:2px solid var(--teal)}
+  .mobile-top .nm{font-family:var(--display);font-weight:600;font-size:1rem}
+  .mobile-top nav{flex-direction:row;overflow-x:auto;padding:0 14px 10px;gap:4px}
+  .mobile-top nav a{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;border-radius:8px 8px 0 0;padding:6px 10px;font-size:.85rem}
+  .mobile-top nav a.active{border-bottom-color:var(--teal)}
+  main{padding:0 22px 60px}
+  .hero{min-height:auto;padding-top:48px}
+  .proof{grid-template-columns:1fr 1fr}
+  .about-grid,.cards,.cert-grid{grid-template-columns:1fr}
+  .badge-wall{flex-direction:row;justify-content:flex-start}
+  .badge-wall img.spct{height:110px}
+  .badge-wall img.trainer{height:100px}
+  .cta{padding:30px 22px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .card:hover,.btn:hover{transform:none}
+}
+
+/* print */
+@media print{
+  body{background:#fff;color:#111}
+  aside,.mobile-top,.cta .row{display:none}
+  .shell{display:block}
+  main{padding:0}
+  section{padding-top:28px}
+  .card,.stop .ach,.proof div,.credo,.earlier{background:#fff;border-color:#ccc;color:#333}
+  .hero h2,.stop h3,.cta h2,.id h1{color:#111}
+  .stop p,.about-grid p{color:#222}
+}
+
+/* ---------- light colour scheme ---------- */
+:root[data-theme="light"]{
+  --ink:#eef3f7;
+  --panel:#ffffff;
+  --panel-2:#e7eef4;
+  --line:#d2dde7;
+  --teal:#0f868f;
+  --teal-deep:#0b6a72;
+  --violet:#6a4ee6;
+  --paper:#10202f;
+  --muted:#4a6076;
+  --muted-2:#6a7f93;
+}
+:root[data-theme="light"] .about-grid p{color:#33424f}
+:root[data-theme="light"] .stop p{color:#33424f}
+:root[data-theme="light"] .chip{color:#2b3a48}
+:root[data-theme="light"] .chip.ai{color:#5a3fd0}
+:root[data-theme="light"] ::selection{background:var(--teal);color:#fff}
+:root[data-theme="light"] .mobile-top{background:rgba(238,243,247,.92)}
+:root[data-theme="light"] .portrait{box-shadow:0 0 0 6px rgba(15,134,143,.14)}
+
+/* ---------- theme toggle ---------- */
+.theme-toggle{
+  position:fixed;top:16px;right:16px;z-index:200;
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:100px;padding:7px 12px;cursor:pointer;
+  color:var(--muted);font-family:var(--display);font-size:.74rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  box-shadow:0 6px 20px rgba(0,0,0,.22);
+  transition:color .18s,border-color .18s,background .18s;
+}
+.theme-toggle:hover{border-color:var(--teal);color:var(--teal)}
+.theme-toggle .icon{font-size:.95rem;line-height:1;opacity:.7}
+.theme-toggle .track{position:relative;width:36px;height:18px;border-radius:100px;background:var(--line);transition:background .2s;flex:none}
+.theme-toggle .thumb{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--teal);transition:transform .2s}
+:root[data-theme="light"] .theme-toggle .thumb{transform:translateX(18px)}
+.theme-toggle .lbl{min-width:3.2em;text-align:left}
+@media (max-width:900px){.theme-toggle{top:auto;bottom:16px;right:16px}.theme-toggle .lbl{display:none}}
+@media print{.theme-toggle{display:none}}
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour scheme" aria-pressed="false">
+  <span class="icon" aria-hidden="true">☀</span>
+  <span class="track"><span class="thumb"></span></span>
+  <span class="icon" aria-hidden="true">☾</span>
+  <span class="lbl" id="themeLabel">Dark</span>
+</button>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themeToggle'),lbl=document.getElementById('themeLabel');
+  function sync(){var light=root.getAttribute('data-theme')==='light';if(btn)btn.setAttribute('aria-pressed',light?'true':'false');if(lbl)lbl.textContent=light?'Light':'Dark';}
+  sync();
+  if(btn){btn.addEventListener('click',function(){var light=root.getAttribute('data-theme')==='light';if(light){root.removeAttribute('data-theme');}else{root.setAttribute('data-theme','light');}try{localStorage.setItem('theme',light?'dark':'light');}catch(e){}sync();});}
+})();
+</script>
+
+<div class="mobile-top">
+  <div class="bar">
+    <img src="" data-srcref="0" alt="Andrew Rix">
+    <div class="nm">Andrew Rix</div>
+  </div>
+  <nav class="mnav">
+    <a href="#top">Overview</a>
+    <a href="#about">About</a>
+    <a href="#highlights">Highlights</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Credentials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>
+
+<div class="shell">
+<aside>
+  <img class="portrait" src="" data-srcref="0" alt="Portrait of Andrew Rix">
+  <div class="id">
+    <h1>Andrew Rix</h1>
+    <div class="role">AI-Native Practice Lead</div>
+    <div class="loc">Sydney, NSW · Australia</div>
+  </div>
+  <nav class="snav">
+    <a href="#top">Overview</a>
+    <a href="#about">About</a>
+    <a href="#highlights">Highlights</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Credentials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="contact">
+    <span class="lbl">Get in touch</span>
+    <a href="mailto:Andrew.Rix@fujitsu.com">Andrew.Rix@fujitsu.com</a>
+    <a href="tel:+61413015481">0413 015 481</a>
+    <a href="https://www.linkedin.com/in/andrew-rix-8390922/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+  <div class="side-badges">
+    <img class="rounded" src="" data-srcref="1" alt="AI-Native Trainer 2026 badge">
+    <img src="" data-srcref="2" alt="SAFe 6 SPCT Verified Expert badge">
+  </div>
+</aside>
+
+<main>
+
+<section class="hero" id="top">
+  <div class="eyebrow">AI-Native transformation · Enterprise agility · SAFe</div>
+  <h2>Andrew Rix helps complex organisations <em>evolve faster</em> than their environment.</h2>
+  <p class="lede">AI-Native Practice Lead, certified AI-Native Trainer and SPCT-credentialed transformation architect with 25+ years in technology. Andrew leads AI capability uplift and large-scale Agile and SAFe transformations across defence, finance, aviation, government and telco.</p>
+  <div class="proof">
+    <div class="hl"><b>AI-Native</b><span>certified Trainer, leading Fujitsu’s AI practice for Oceania</span></div>
+    <div><b>SPCT</b><span>SAFe Verified Expert, one of fewer than 200 worldwide</span></div>
+    <div><b>750+</b><span>practitioners trained · NPS 89 for training delivery</span></div>
+    <div><b>Platinum</b><span>Fujitsu's highest global achievement award</span></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="eyebrow">About</div>
+  <div class="about-grid">
+    <div>
+      <p>Andrew is Fujitsu’s AI-Native Practice Lead, heading the AI-Lean-Agile Centre of Excellence (LACE) for Oceania. He delivers AI training and enablement programmes, embeds AI solution delivery lifecycles into Fujitsu and its customers, and drives AI initiatives from inception through to production-scale rollout.</p>
+      <p>That AI leadership is built on a decade of conceptualising and leading large-scale Agile and SAFe transformations across the public and private sectors, including the Department of Defence, Qantas, Perpetual, City of Gold Coast and state government, and on leading Lean Portfolio Management at a global executive level for Fujitsu Uvance.</p>
+      <p>Behind it all sits more than 20 years of consulting, program management and hands-on technical work spanning IT strategy, systems engineering, DevOps and architecture. Andrew speaks both languages: the boardroom and the build.</p>
+    </div>
+    <div class="credo">
+      <b>A passionate technologist who thrives on staying ahead of the curve.</b><br><br>
+      Andrew is known for embracing the new, whether Agile, AI or whatever emerges next, and for bringing curiosity and courage to help organisations change. He is currently delivering AI-Native training and capability uplift across the Oceania region.
+    </div>
+  </div>
+</section>
+
+<section id="highlights">
+  <div class="eyebrow">Career highlights</div>
+  <div class="cards">
+    <div class="card">
+      <div class="k">Fujitsu Platinum Achievement Award</div>
+      <p>The organisation's highest global honour, awarded for exceptional leadership of the worldwide adoption of Lean Portfolio Management.</p>
+    </div>
+    <div class="card">
+      <div class="k">Global SAFe Summit presenter</div>
+      <p>Presented Fujitsu transformation case studies to global practitioner audiences at the 2022 Denver and 2023 Nashville SAFe Summits.</p>
+    </div>
+    <div class="card">
+      <div class="k">Launched Fujitsu's first Agile Release Train</div>
+      <p>Established the company's scaled Agile capability across Oceania, setting the foundation for every transformation that followed.</p>
+    </div>
+    <div class="card">
+      <div class="k">Transformed delivery at scale</div>
+      <p>Reshaped delivery models for Defence, Uvance, Qantas, Perpetual, City of Gold Coast and NSW Government, realising faster flow, stronger alignment and measurable business value.</p>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="eyebrow">Experience · the value stream</div>
+  <div class="stream">
+
+    <div class="stop violet">
+      <div class="when">Sep 2025 – Present · Fujitsu Australia</div>
+      <h3>AI-Native Practice Lead</h3>
+      <div class="org">AI-Lean-Agile Centre of Excellence, Oceania</div>
+      <p>Leads Fujitsu’s AI-Native practice, focused purely on AI capability. Designs and delivers AI training and enablement programmes, embeds AI solution delivery lifecycles into Fujitsu and customer organisations, and is responsible for driving AI initiatives from inception through to production-scale rollout.</p>
+      <div class="ach"><b>Focus</b>AI-Native and Agile enablement programmes, executive coaching, organisational design and value stream optimisation, and building enduring internal AI capability for Defence, Fujitsu Uvance and Government clients.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Aug 2024 – Sep 2025 · Fujitsu Australia</div>
+      <h3>Enterprise Agile Lead</h3>
+      <div class="org">Department of Defence</div>
+      <p>Drove large-scale Lean-Agile transformation inside one of Australia's most complex and regulated environments. Designed and delivered Agile and SAFe training programs, coaching Defence executives, product managers and delivery teams while aligning Agile practice with Defence governance, security and compliance requirements.</p>
+      <div class="ach"><b>Impact</b>Built an embedded coaching and mentoring framework that accelerated SAFe adoption across multiple portfolios, lifted delivery visibility and predictability through Lean Portfolio Management, and created sustained internal capability by certifying Defence personnel as SAFe practitioners and leaders.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Sep 2022 – Aug 2024 · Fujitsu Australia</div>
+      <h3>Enterprise Agile Lead</h3>
+      <div class="org">Fujitsu Uvance (Global)</div>
+      <p>Led development of Fujitsu's global Agile and Lean Portfolio Management offerings under the Uvance transformation. Provided strategic consulting to align product-based delivery with business value, customer outcomes and sustainability goals, and designed enablement programs that uplifted Agile capability across business lines and regions.</p>
+      <div class="ach"><b>Impact</b>Established the framework for product-led Agile delivery within Uvance, embedded Lean Portfolio Management as a global standard with executive sponsors, and enabled multiple international business units to sell Business Agility Transformation Services.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Feb 2022 – Aug 2022 · Fujitsu Australia</div>
+      <h3>Enterprise Agile Lead</h3>
+      <div class="org">City of Gold Coast Council</div>
+      <p>Partnered with the council's digital and ICT teams to implement SAFe for critical citizen-facing initiatives, designing and launching an Agile Release Train focused on mobile-enabled service delivery.</p>
+      <div class="ach"><b>Impact</b>Delivered the council's first Agile Release Train, reducing time-to-market for new digital capabilities and lifting delivery cadence and customer satisfaction through integrated planning and value stream alignment.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Sep 2021 – Jan 2022 · Fujitsu Australia</div>
+      <h3>Enterprise Agile Lead</h3>
+      <div class="org">Fujitsu Digital Systems Platform Unit</div>
+      <p>Oversaw the Agile and SAFe transformation for the Oceania Digital Systems Platform Unit, uniting engineering, product and delivery teams under one Lean-Agile model and launching the first cross-functional Agile Release Train across multiple high-priority programs.</p>
+      <div class="ach"><b>Impact</b>Increased program transparency, reduced cross-team dependencies, and established Agile metrics and portfolio governance that became global benchmarks for other business units.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Jun 2020 – Sep 2021 · Fujitsu Australia</div>
+      <h3>Enterprise Agile Lead</h3>
+      <div class="org">Fujitsu Portfolios and Alliances</div>
+      <p>Delivered Agile consulting and training across Fujitsu portfolios to enable large-scale SAFe adoption, and facilitated executive workshops introducing Lean Portfolio Management and modernised governance.</p>
+      <div class="ach"><b>Impact</b>Launched Fujitsu's first Agile Release Train, improved flow efficiency and investment transparency through portfolio-level Kanban, and mentored leaders who became Agile champions across the business.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Dec 2019 – May 2020 · Fujitsu Australia</div>
+      <h3>Program Manager</h3>
+      <div class="org">Transport for NSW</div>
+      <p>Managed digital transformation delivery using Scrum and hybrid Agile models, implementing Agile governance, backlog management and reporting frameworks.</p>
+      <div class="ach"><b>Impact</b>Introduced sprint-based cadences that cut project cycle times by 30% and strengthened visibility through Jira-based portfolio tracking.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Apr 2017 – Nov 2019 · Fujitsu Australia</div>
+      <h3>Program Manager</h3>
+      <div class="org">Qantas Airways</div>
+      <p>Managed large-scale end-user and infrastructure transformation across Qantas, accountable for the Virtual Workspace, Privileged Access Management and Windows 10 Upgrade programs on the IT modernisation roadmap.</p>
+      <div class="ach"><b>Impact</b>Delivered multiple concurrent programs on schedule and within budget, with seamless user migration and reduced downtime through improved deployment planning.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Mar 2015 – Mar 2017 · Fujitsu Australia</div>
+      <h3>Program Manager</h3>
+      <div class="org">Perpetual</div>
+      <p>Led the design and execution of a multimillion-dollar Agile delivery program (InfraScrum) to modernise Perpetual's infrastructure portfolio, working with the CIO to redefine delivery structures and Agile funding models.</p>
+      <div class="ach"><b>Impact</b>Transitioned the infrastructure program from traditional project management to Agile delivery, cutting project initiation time by 60% and establishing value stream-based governance.</div>
+    </div>
+
+    <div class="stop">
+      <div class="when">Feb 2014 – Feb 2015 · Fujitsu Australia</div>
+      <h3>Senior Project Manager</h3>
+      <div class="org">NSW Department of Family and Community Services</div>
+      <p>Managed one of the largest SaaS migrations in NSW Government, transitioning 27,000 mailboxes to Fujitsu Cloud across multi-vendor coordination, risk management and stakeholder communication.</p>
+      <div class="ach"><b>Impact</b>Delivered the migration with zero downtime and no data loss, and was recognised for excellence in delivery execution and stakeholder engagement.</div>
+    </div>
+
+  </div>
+  <div class="earlier"><b>Earlier career:</b> Senior Project Manager and Project Manager, Fujitsu (2011 – 2015) · Projects Technical Lead, Messaging and Collaboration Architect, Analyst Programmer and Deployment Lead, KAZ (1999 – 2009) · IT Consultant and Analyst Programmer, PwC (1996 – 1999).</div>
+</section>
+
+<section id="skills">
+  <div class="eyebrow">Skills</div>
+  <div class="skill-rows">
+    <span class="chip">Agile leadership and consulting</span>
+    <span class="chip">Executive advisory</span>
+    <span class="chip">Scaled Agile Framework (SAFe)</span>
+    <span class="chip">Lean Portfolio Management</span>
+    <span class="chip">Agile coaching and training</span>
+    <span class="chip">Project and program management</span>
+    <span class="chip">People leadership</span>
+    <span class="chip">Value Stream Mapping</span>
+    <span class="chip">Design Thinking and Innovation</span>
+    <span class="chip">Systems engineering and architecture</span>
+    <span class="chip ai">AI-Native transformation</span>
+    <span class="chip ai">AI training and enablement</span>
+    <span class="chip ai">AI solution delivery lifecycles</span>
+    <span class="chip ai">AI initiatives, inception to production</span>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="eyebrow">Credentials</div>
+  <div class="cert-grid">
+    <div class="badge-wall">
+      <img class="trainer" src="" data-srcref="1" alt="AI-Native Trainer 2026 badge">
+      <img class="spct" src="" data-srcref="2" alt="SAFe 6 SPCT Verified Expert badge">
+    </div>
+    <div>
+      <ul class="cert-list">
+        <li><b>AI-Native Trainer (2026)</b><span>Scaled Agile, Inc.</span></li>
+        <li><b>SAFe Practice Consultant-T (SPCT)</b><span>Scaled Agile, Inc.</span></li>
+        <li><b>SAFe Lean Portfolio Manager</b><span>Scaled Agile, Inc.</span></li>
+        <li><b>SAFe Program Consultant (SPC)</b><span>Scaled Agile, Inc.</span></li>
+        <li><b>SAFe Agilist · SAFe Remote Trainer</b><span>Scaled Agile, Inc.</span></li>
+        <li><b>Certified Scrum Master</b><span>Scrum Alliance</span></li>
+        <li><b>Project Management Professional (PMP)</b><span>PMI</span></li>
+        <li><b>PRINCE2 Agile Foundation and Practitioner</b><span>AXELOS</span></li>
+        <li><b>PRINCE2 Foundation and Practitioner</b><span>AXELOS</span></li>
+      </ul>
+      <p class="cert-note">The SPCT designation is held by fewer than 200 people worldwide and only a handful in Australia. The AI-Native Trainer certification accredits Andrew to deliver Scaled Agile’s AI-Native curriculum.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="eyebrow">Contact</div>
+  <div class="cta">
+    <h2>Let’s talk transformation.</h2>
+    <p>If your organisation needs to take AI from inception to production, align investment with value, or build genuine Agile and AI-Native capability, get in touch with Andrew.</p>
+    <div class="row">
+      <a class="btn primary" href="mailto:Andrew.Rix@fujitsu.com">Email Andrew</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/andrew-rix-8390922/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="btn ghost" href="tel:+61413015481">Call 0413 015 481</a>
+    </div>
+  </div>
+  <footer>Andrew Rix · Sydney, NSW, Australia · References available on request</footer>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var links=document.querySelectorAll('nav a');
+  var sections=[];
+  document.querySelectorAll('section[id], .hero').forEach(function(s){sections.push(s)});
+  function spy(){
+    var pos=window.scrollY+140, current='top';
+    sections.forEach(function(s){ if(s.offsetTop<=pos) current=s.id||'top'; });
+    links.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href')==='#'+current);
+    });
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  spy();
+})();
+</script>
+<script>
+/* image payload (compressed + deduped) */
+(function(){var I=["data:image/jpeg;base64,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","data:image/jpeg;base64,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","data:image/jpeg;base64,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"];document.querySelectorAll('[data-srcref]').forEach(function(el){var i=+el.getAttribute('data-srcref');if(I[i])el.src=I[i];});})();
+</script>
+</body>
+</html>
