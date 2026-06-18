@@ -166,6 +166,26 @@ section{padding-top:72px;scroll-margin-top:16px}
 .stop .ach b{color:var(--teal);font-family:var(--display);font-size:.74rem;text-transform:uppercase;letter-spacing:.16em;display:block;margin-bottom:6px}
 .earlier{margin-top:36px;padding:20px 24px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.9rem}
 .earlier b{color:var(--paper)}
+.earlier-head{display:block;color:var(--paper);font-family:var(--display);font-weight:600;margin-bottom:14px}
+.earlier-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.earlier-table th{
+  text-align:left;font-family:var(--display);font-size:.7rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--muted-2);
+  padding:0 18px 9px 0;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+.earlier-table td{padding:12px 18px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+.earlier-table tr:last-child td{border-bottom:none;padding-bottom:0}
+.earlier-table td.yr{white-space:nowrap;color:var(--paper);font-family:var(--display);font-weight:500}
+.earlier-table td.org{white-space:nowrap;color:var(--teal);font-weight:500}
+.earlier-table th:last-child,.earlier-table td:last-child{padding-right:0}
+@media (max-width:560px){
+  .earlier-table,.earlier-table tbody,.earlier-table tr,.earlier-table td{display:block;width:100%}
+  .earlier-table thead{display:none}
+  .earlier-table tr{padding:12px 0;border-bottom:1px solid var(--line)}
+  .earlier-table tr:last-child{border-bottom:none}
+  .earlier-table td{border:none;padding:2px 0}
+  .earlier-table td.yr{color:var(--muted-2);font-size:.78rem}
+}
 
 /* skills */
 .skill-rows{display:flex;flex-wrap:wrap;gap:10px}
@@ -493,7 +513,31 @@ footer{margin-top:48px;text-align:center;color:var(--muted-2);font-size:.8rem}
     </div>
 
   </div>
-  <div class="earlier"><b>Earlier career:</b> Senior Project Manager and Project Manager, Fujitsu (2011 – 2015) · Projects Technical Lead, Messaging and Collaboration Architect, Analyst Programmer and Deployment Lead, KAZ (1999 – 2009) · IT Consultant and Analyst Programmer, PwC (1996 – 1999).</div>
+  <div class="earlier">
+    <span class="earlier-head">Earlier career</span>
+    <table class="earlier-table">
+      <thead>
+        <tr><th>Years</th><th>Organisation</th><th>Roles</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="yr">2011 – 2015</td>
+          <td class="org">Fujitsu</td>
+          <td>Senior Project Manager · Project Manager</td>
+        </tr>
+        <tr>
+          <td class="yr">1999 – 2009</td>
+          <td class="org">KAZ</td>
+          <td>Projects Technical Lead · Messaging and Collaboration Architect · Analyst Programmer · Deployment Lead</td>
+        </tr>
+        <tr>
+          <td class="yr">1996 – 1999</td>
+          <td class="org">PwC</td>
+          <td>IT Consultant · Analyst Programmer</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section id="skills">
