@@ -211,6 +211,8 @@ The one persistent shadow is ambient and nearly invisible by design: it exists t
 
 ### Named Rules
 
+**The Sticky-Offset Rule.** Anything that sticks to the top of the viewport must be added to `--sticky-offset`, and every anchor target scrolls by `calc(var(--sticky-offset) + 16px)`. It is 0 on desktop, where the sidebar sits beside the content rather than over it, and the mobile header's measured height below 900px. Skip this and in-page navigation lands the reader behind the header — the heading they asked for is the one thing they can't see.
+
 **The Contact Rule.** Shadow is a state, not a style. If an element is not hovered, focused or emitting a signal, it has no shadow beyond the ambient card value. Adding a resting drop shadow to make something "pop" is forbidden; raise its tone instead.
 
 ## 5. Components
@@ -257,6 +259,7 @@ Four cells in a 1px-gap grid whose gap colour is Line, so the borders are the gr
 - **Do** verify contrast at 4.5:1 for anything under 18px, in both themes. Government and defence readers are in the audience and, per PRODUCT.md, *"accessibility is itself part of the credibility argument."*
 - **Do** keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.
 - **Do** give every `<img>` explicit `width` and `height` attributes matching the file's intrinsic size. They are what reserve the space and stop the layout shifting as images arrive. **And pair them with `width: auto` in any CSS rule that sets only `height`** — otherwise the attribute supplies the used width and the image renders squashed. This is exactly how the credential badges broke.
+- **Do** add any new top-sticky element's height to `--sticky-offset`. Anchors, and the skip link, depend on it.
 - **Do** check the print stylesheet after any structural change. The page is also a CV, and `@media print` already strips the chrome and inverts to black-on-white.
 - **Do** honour `prefers-reduced-motion`: the existing rule kills all animation, freezes reveals visible, and cancels every hover transform. Any new animation joins it.
 

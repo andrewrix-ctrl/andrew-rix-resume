@@ -53,6 +53,11 @@
   --tint-teal:rgba(99,208,216,.08);
   --kicker-bg:rgba(16,29,48,.7);
   --bar-bg:rgba(8,15,26,.9);
+  /* how much of the top of the viewport is covered by something sticky.
+     Zero on desktop, where the sidebar sits beside the content rather than
+     over it; the mobile header's real height below 900px. Every anchor target
+     clears it — otherwise the heading you jumped to lands behind the header. */
+  --sticky-offset:0px;
   --display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
   --body:'IBM Plex Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;
   --shadow-card:0 1px 0 rgba(255,255,255,.03) inset,0 18px 40px -24px rgba(0,0,0,.7);
@@ -173,8 +178,8 @@ nav a.active::before{background:var(--teal);box-shadow:0 0 10px var(--glow-teal)
 .side-badges img.rounded{border-radius:10px}
 
 /* ---------- main ---------- */
-main{padding:0 60px 90px;min-width:0;scroll-margin-top:16px}
-section{padding-top:78px;scroll-margin-top:16px}
+main{padding:0 60px 90px;min-width:0;scroll-margin-top:calc(var(--sticky-offset) + 16px)}
+section{padding-top:78px;scroll-margin-top:calc(var(--sticky-offset) + 16px)}
 .eyebrow{
   font-family:var(--display);font-size:var(--fs-micro);font-weight:600;
   text-transform:uppercase;letter-spacing:.24em;color:var(--teal);
@@ -381,6 +386,8 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 }
 
 @media (max-width:900px){
+  /* static fallback for the measured value below; the header is ~125px */
+  :root{--sticky-offset:125px}
   .shell{display:block}
   aside{display:none}
   .mobile-top{
@@ -831,6 +838,20 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
   window.addEventListener('load', remeasure);
   if(document.fonts&&document.fonts.ready&&document.fonts.ready.then){document.fonts.ready.then(remeasure);}
   measure(); paint();
+})();
+
+/* the sticky header's height is the anchor offset — measured, so it stays
+   right if the bar ever reflows */
+(function(){
+  var bar=document.querySelector('.mobile-top'),root=document.documentElement;
+  if(!bar)return;
+  function sync(){
+    var h=bar.offsetParent===null?0:bar.getBoundingClientRect().height;
+    root.style.setProperty('--sticky-offset',h+'px');
+  }
+  window.addEventListener('resize',sync);
+  window.addEventListener('load',sync);
+  sync();
 })();
 
 /* the section strip scrolls horizontally on mobile — flag when there's more */

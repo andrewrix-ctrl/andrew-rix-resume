@@ -394,6 +394,11 @@
         "name": "The One-Value Rule",
         "body": "A size that isn't on the eight-step scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them.",
         "section": "typography"
+      },
+      {
+        "name": "The Sticky-Offset Rule",
+        "body": "Anything that sticks to the top of the viewport must be added to --sticky-offset, and every anchor target scrolls by calc(var(--sticky-offset) + 16px). Zero on desktop, the mobile header’s measured height below 900px.",
+        "section": "elevation"
       }
     ],
     "dos": [
@@ -404,6 +409,7 @@
       "Do verify contrast at 4.5:1 for anything under 18px, in both themes.",
       "Do keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.",
       "Do give every <img> explicit width and height attributes matching the file's intrinsic size, and pair them with width: auto in any CSS rule that sets only height — otherwise the attribute supplies the used width and the image renders squashed.",
+      "Do add any new top-sticky element's height to --sticky-offset; anchors and the skip link depend on it.",
       "Do check the print stylesheet after any structural change. The page is also a CV.",
       "Do honour prefers-reduced-motion: any new animation joins the existing reduce rule."
     ],
