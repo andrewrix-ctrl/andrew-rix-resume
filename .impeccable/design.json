@@ -127,6 +127,12 @@
         "displayName": "Surface 2",
         "lightValue": "#f5f9fc",
         "note": "Lower stop of every surface gradient; needs its own token because light --panel and --ink-2 are both white."
+      },
+      "violet-line": {
+        "role": "secondary",
+        "displayName": "Violet Line",
+        "lightValue": "rgba(74,52,184,.45)",
+        "note": "Border of the AI-flagged skill chips; the last hard-coded accent."
       }
     },
     "typographyMeta": {
@@ -311,6 +317,28 @@
         "name": "--r-pill",
         "value": "100px"
       }
+    ],
+    "spacingScale": [
+      {
+        "name": "--space-panel",
+        "value": "26px"
+      },
+      {
+        "name": "--space-block",
+        "value": "42px"
+      },
+      {
+        "name": "--space-gutter",
+        "value": "60px / 22px mobile"
+      },
+      {
+        "name": "--space-tail",
+        "value": "90px / 64px mobile"
+      },
+      {
+        "name": "--space-section",
+        "value": "92px / 68px mobile"
+      }
     ]
   },
   "components": [
@@ -434,6 +462,16 @@
         "name": "The Section-Heading Rule",
         "body": "A section heading is --fs-head, sentence case, --paper, with no rule, no accent and no tracking. Ornament is not hierarchy, and the boundary between sections is space rather than a line.",
         "section": "typography"
+      },
+      {
+        "name": "The Descent Rule",
+        "body": "No heading is larger than a heading it sits under. h1 32px, section h2 28px, h3 20px; the closing h2 at 32px is its section’s own heading. The hero h2 at 60px is the display line and the one acknowledged exception.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tracking Rule",
+        "body": "Body copy carries letter-spacing .01em on the dark ground and normal wherever the ground is light — light theme and print both reset it.",
+        "section": "typography"
       }
     ],
     "dos": [
@@ -447,6 +485,7 @@
       "Do add any new top-sticky element's height to --sticky-offset; anchors and the skip link depend on it.",
       "Do keep the focus ring free of its own border-radius — it follows the element, and setting one changes the element’s shape on focus.",
       "Do give a new token a print value alongside its light one — the page is also a CV, and a screen-only colour prints as whatever the dark theme left behind.",
+      "Do put structural rhythm on the spacing tokens; component-internal gaps stay literal on purpose.",
       "Do check the print stylesheet after any structural change. The page is also a CV.",
       "Do honour prefers-reduced-motion: any new animation joins the existing reduce rule."
     ],

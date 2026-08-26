@@ -56,11 +56,11 @@ rounded:
   lg: "22px"
   pill: "100px"
 spacing:
-  xs: "9px"
-  sm: "14px"
-  md: "22px"
-  lg: "42px"
-  xl: "78px"
+  panel: "26px"
+  block: "42px"
+  gutter: "60px"
+  tail: "90px"
+  section: "92px"
 components:
   button-primary:
     backgroundColor: "{colors.signal-teal}"
@@ -183,8 +183,8 @@ Both are self-hosted from `assets/fonts/` as `latin` and `latin-ext` variable su
 Eight steps, every one a token (`--fs-micro` … `--fs-hero`). No literal `font-size` value appears anywhere in the stylesheet except the decorative quote glyph. The scale runs tight through the label range and opens up into display — a CV needs several distinguishable small sizes, and the page collapsed to eight steps from twenty-three ad-hoc values without a visible change, which is the proof the extra values were never carrying information.
 
 - **`--fs-hero`** (700, `clamp(2.3rem, 5vw, 3.8rem)`, line-height 1.08, tracking -0.035em): hero headline only. Capped at `19ch` so it always breaks into three lines.
-- **`--fs-display`** (700, 2rem, tracking -0.025em): the CTA heading.
-- **`--fs-head`** (1.75rem, weight 600, tracking -0.015em, `text-wrap: balance`): the six section headings, the sidebar name, and the proof-strip values.
+- **`--fs-display`** (700, 2rem, tracking -0.025em): the sidebar name — the page's `<h1>`, and the only thing at this size besides the closing heading.
+- **`--fs-head`** (1.75rem, weight 600, tracking -0.015em, `text-wrap: balance`): the five section headings, and the proof-strip values.
 - **`--fs-title`** (600, 1.25rem, tracking -0.015em): timeline role headings.
 - **`--fs-lead`** (1.1rem): the hero lede at `60ch`, card titles in Signal Teal, the credo pull-quote.
 - **`--fs-body`** (400, 1rem, line-height 1.65): prose.
@@ -196,9 +196,13 @@ Eight steps, every one a token (`--fs-micro` … `--fs-hero`). No literal `font-
 
 **The Display-For-Data Rule.** Every number, date, credential and label is set in Bricolage, not Plex. The body font handles sentences; the display font handles anything that is a fact. This is why the proof strip, the timeline dates and the table year column all share a texture that prose does not.
 
+**The Descent Rule.** No heading is larger than a heading it sits under. `<h1>` 32px, section `<h2>` 28px, `<h3>` 20px, and the closing `<h2>` at 32px because it *is* its section's heading rather than a child of one. The hero `<h2>` at 60px is the page's display line and the one acknowledged exception. Within a level, sizes may differ; across levels they may not invert.
+
+**The Tracking Rule.** Body copy carries `letter-spacing: .01em` on the dark ground and `normal` everywhere the ground is light — light theme and print both reset it. Light type on dark reads lighter and tighter than it measures, and line-height alone doesn't correct it.
+
 **The One-Value Rule.** A size that isn't on the scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them — the twenty-three values this replaced differed by as little as 2%, which no reader has ever seen. The same rule governs radius: five steps (`--r-marker` 3px, `--r-xs` 9px, `--r-sm` 12px, `--r-md` 16px, `--r-lg` 22px) plus `--r-pill`, and circles, which are a shape rather than a step.
 
-**The Section-Heading Rule.** A section heading is set in `--fs-head`, sentence case, in `--paper`, and carries no rule, no accent and no tracking. It was the reverse until it wasn't: six `<h2>` elements at 0.72rem — the smallest type on the page, below body size — signalling "heading" through caps, tracking, teal and two rules rather than through any typographic weight of their own. Ornament is not hierarchy. The boundary between sections is space (92px, 68px on mobile), not a line.
+**The Section-Heading Rule.** A section heading is set in `--fs-head`, sentence case, in `--paper`, and carries no rule, no accent and no tracking. Contact is the deliberate exception: its heading *is* the closing line, "Let's talk transformation.", set inside the CTA panel — a label reading "Contact" directly above it said the same thing twice and forced a subordinate heading to outsize its parent. It was the reverse until it wasn't: six `<h2>` elements at 0.72rem — the smallest type on the page, below body size — signalling "heading" through caps, tracking, teal and two rules rather than through any typographic weight of their own. Ornament is not hierarchy. The boundary between sections is space (92px, 68px on mobile), not a line.
 
 **The Measure Rule.** No line of prose exceeds 70ch and the hero lede stops at 60ch. Headlines cap by character count (`max-width: 19ch`) rather than by percentage, so the break points survive every viewport.
 
@@ -265,6 +269,7 @@ Four cells in a 1px-gap grid whose gap colour is Line, so the borders are the gr
 - **Do** keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.
 - **Do** give every `<img>` explicit `width` and `height` attributes matching the file's intrinsic size. They are what reserve the space and stop the layout shifting as images arrive. **And pair them with `width: auto` in any CSS rule that sets only `height`** — otherwise the attribute supplies the used width and the image renders squashed. This is exactly how the credential badges broke.
 - **Do** add any new top-sticky element's height to `--sticky-offset`. Anchors, and the skip link, depend on it.
+- **Do** put structural rhythm on the spacing tokens — `--space-section`, `--space-block`, `--space-panel`, `--space-gutter`, `--space-tail`. Component-internal gaps stay literal on purpose: 7px, 9px and 11px are doing different jobs in different components, and flattening them onto a scale would cost variation the page uses.
 - **Do** give a new token a print value alongside its light one. Print is a palette, not an afterthought — the page is also a CV, and a colour that only exists for screen prints as whatever the dark theme left behind.
 - **Do** check the print stylesheet after any structural change. The page is also a CV, and `@media print` already strips the chrome and inverts to black-on-white.
 - **Do** honour `prefers-reduced-motion`: the existing rule kills all animation, freezes reveals visible, and cancels every hover transform. Any new animation joins it.
