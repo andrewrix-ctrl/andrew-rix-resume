@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-26T00:00:00Z",
+  "title": "Design System: Andrew Rix · AI-Native Practice Lead",
+  "extensions": {
+    "colorMeta": {
+      "signal-teal": {
+        "role": "primary",
+        "displayName": "Signal Teal",
+        "canonical": "oklch(0.797 0.100 201.8)",
+        "lightValue": "#0c7f88",
+        "tonalRamp": [
+          "#001116",
+          "#002e34",
+          "#004d53",
+          "#016f75",
+          "#2e9299",
+          "#4eb7bf",
+          "#73dce4",
+          "#a1ffff"
+        ]
+      },
+      "transformation-violet": {
+        "role": "secondary",
+        "displayName": "Transformation Violet",
+        "canonical": "oklch(0.686 0.179 290.1)",
+        "lightValue": "#5b41d6",
+        "tonalRamp": [
+          "#12003b",
+          "#290861",
+          "#452b89",
+          "#634bb4",
+          "#846be0",
+          "#a68eff",
+          "#c9b5ff",
+          "#eddcff"
+        ]
+      },
+      "status-green": {
+        "role": "tertiary",
+        "displayName": "Status Green",
+        "canonical": "oklch(0.774 0.151 163.2)",
+        "tonalRamp": [
+          "#001501",
+          "#003315",
+          "#00542f",
+          "#00774c",
+          "#009b6b",
+          "#27c18b",
+          "#5ce6ae",
+          "#8fffd5"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(0.167 0.026 258.8)",
+        "lightValue": "#eaf1f6",
+        "tonalRamp": [
+          "#050b16",
+          "#1e2531",
+          "#3b424e",
+          "#5a626e",
+          "#7b838e",
+          "#9ea6b1",
+          "#c3cad4",
+          "#e9eff9"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(0.966 0.009 232.4)",
+        "lightValue": "#0d1c2b",
+        "tonalRamp": [
+          "#090c0d",
+          "#222627",
+          "#3f4345",
+          "#5e6264",
+          "#7e8386",
+          "#a0a6a9",
+          "#c4cace",
+          "#e9f0f4"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "oklch(0.732 0.038 248.4)",
+        "lightValue": "#4a6076",
+        "tonalRamp": [
+          "#030c16",
+          "#1a2632",
+          "#354452",
+          "#536374",
+          "#728597",
+          "#93a8bc",
+          "#b7cce0",
+          "#ddf1ff"
+        ]
+      },
+      "muted-2": {
+        "role": "neutral",
+        "displayName": "Muted 2",
+        "canonical": "oklch(0.566 0.036 249.5)",
+        "lightValue": "#66798d",
+        "note": "Light-theme value measures ~3.9:1 against the light ground and misses the 4.5:1 small-text bar. Darken it."
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "lightValue": "#ffffff"
+      },
+      "panel-2": {
+        "role": "neutral",
+        "displayName": "Panel 2",
+        "lightValue": "#e6eef5"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "lightValue": "#cdd9e5"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only. Capped at 19ch so it always breaks to three lines."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "CTA heading; the sidebar name sits just under it at 1.72rem."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Timeline role headings; card titles sit at 1.08rem in Signal Teal."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All prose. Lede 1.08rem/1.7 at 60ch; timeline paragraphs cap at 70ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section eyebrows, kicker, dates, captions, table headers. Always the display family, never the body family."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-ambient",
+        "value": "0 1px 0 rgba(255,255,255,.03) inset, 0 18px 40px -24px rgba(0,0,0,.7)",
+        "purpose": "Resting state of every large surface. The inset highlight keeps the panel gradient from looking printed."
+      },
+      {
+        "name": "card-lifted",
+        "value": "0 24px 46px -26px rgba(0,0,0,.8)",
+        "purpose": "Card hover only, paired with a 4px lift."
+      },
+      {
+        "name": "glow-teal",
+        "value": "0 0 10px rgba(99,208,216,.5)",
+        "purpose": "Lit points: active nav dot, kicker spark, timeline stop centres, progress bar."
+      },
+      {
+        "name": "glow-violet",
+        "value": "0 0 10px rgba(155,130,255,.45)",
+        "purpose": "Violet lit points: AI chip dots, later timeline stops."
+      },
+      {
+        "name": "plate",
+        "value": "0 8px 20px -12px rgba(0,0,0,.6)",
+        "purpose": "White client logo plates sitting on the dark ground."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid var(--teal); outline-offset: 3px",
+        "purpose": "Global :focus-visible treatment. Never removed."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.22,.61,.36,1)",
+        "purpose": "The only easing curve in the system. Ease-out, no overshoot."
+      },
+      {
+        "name": "state",
+        "value": "200ms",
+        "purpose": "Colour and border state changes on links, chips, contact rows."
+      },
+      {
+        "name": "lift",
+        "value": "250-280ms",
+        "purpose": "Hover translate on cards, buttons, plates, badges."
+      },
+      {
+        "name": "reveal",
+        "value": "700ms, staggered 60ms via data-d 1|2|3",
+        "purpose": "Scroll-in reveal: opacity 0 to 1 with a 22px rise. Falls back to visible when the observer or motion preference is absent."
+      },
+      {
+        "name": "bg-wash",
+        "value": "34s ease-in-out infinite",
+        "purpose": "Ambient background gradient drift. Slow enough to be felt, not watched."
+      },
+      {
+        "name": "stream-flow",
+        "value": "6s linear infinite",
+        "purpose": "Upward fill of the value-stream spine."
+      },
+      {
+        "name": "pulse",
+        "value": "4.5s infinite",
+        "purpose": "Portrait availability ring."
+      },
+      {
+        "name": "blink",
+        "value": "2.6s ease-in-out infinite",
+        "purpose": "Kicker spark."
+      },
+      {
+        "name": "count-up",
+        "value": "1100ms, cubic ease-out, once on first view",
+        "purpose": "The 750+ proof figure."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sidebar-collapse",
+        "value": "900px"
+      },
+      {
+        "name": "table-stack",
+        "value": "560px"
+      },
+      {
+        "name": "shell-max",
+        "value": "1320px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The CTA action. The one place teal and violet are allowed to blend.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Connect on LinkedIn</a>",
+      "css": ".ds-btn-primary{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-weight:600;font-size:.95rem;text-decoration:none;padding:14px 28px;border-radius:100px;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(120deg,var(--teal,#63d0d8),var(--violet,#9b82ff));color:#06121a;box-shadow:0 12px 30px -12px rgba(99,208,216,.5);transition:transform .2s cubic-bezier(.22,.61,.36,1),box-shadow .2s}.ds-btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -14px rgba(155,130,255,.45)}.ds-btn-primary:focus-visible{outline:2px solid var(--teal,#63d0d8);outline-offset:3px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The secondary action. Translucent panel fill, teal on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Email Andrew</a>",
+      "css": ".ds-btn-ghost{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-weight:600;font-size:.95rem;text-decoration:none;padding:14px 28px;border-radius:100px;display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line,#213650);color:var(--paper,#eef5f9);background:rgba(16,29,48,.4);transition:transform .2s cubic-bezier(.22,.61,.36,1),border-color .2s,color .2s}.ds-btn-ghost:hover{transform:translateY(-3px);border-color:var(--teal,#63d0d8);color:var(--teal,#63d0d8)}.ds-btn-ghost:focus-visible{outline:2px solid var(--teal,#63d0d8);outline-offset:3px}"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "A capability label. Non-interactive by design — a label, not a filter.",
+      "html": "<span class=\"ds-chip\">Lean Portfolio Management</span>",
+      "css": ".ds-chip{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:.88rem;font-weight:500;padding:10px 17px;border-radius:100px;border:1px solid var(--line,#213650);background:linear-gradient(180deg,var(--panel,#101d30),var(--ink-2,#0b1524));color:var(--paper-dim,#c7d5e2);display:inline-block;cursor:default;transition:transform .2s cubic-bezier(.22,.61,.36,1),border-color .2s,color .2s}.ds-chip:hover{transform:translateY(-2px);border-color:var(--teal-deep,#2e979f);color:var(--paper,#eef5f9)}"
+    },
+    {
+      "name": "AI Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip-ai",
+      "description": "The violet variant marking the AI-era capabilities. The leading dot is how the skills section shows what is new.",
+      "html": "<span class=\"ds-chip-ai\">AI Solution Delivery Lifecycle</span>",
+      "css": ".ds-chip-ai{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:.88rem;font-weight:500;padding:10px 17px;border-radius:100px;border:1px solid rgba(155,130,255,.5);background:linear-gradient(180deg,var(--panel,#101d30),var(--ink-2,#0b1524));color:#cabfff;display:inline-flex;align-items:center;gap:8px;cursor:default;transition:transform .2s cubic-bezier(.22,.61,.36,1),border-color .2s}.ds-chip-ai::before{content:\"\";width:7px;height:7px;border-radius:50%;background:var(--violet,#9b82ff);box-shadow:0 0 8px rgba(155,130,255,.45)}.ds-chip-ai:hover{transform:translateY(-2px);border-color:var(--violet,#9b82ff)}"
+    },
+    {
+      "name": "Highlight Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Career-highlight surface. Flat at rest; on hover it lifts and a masked teal hairline fades in around the edge.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-k\">Fujitsu Platinum Achievement Award</div><p>The organisation&rsquo;s highest global honour, awarded for exceptional leadership of the worldwide adoption of Lean Portfolio Management.</p></div>",
+      "css": ".ds-card{background:linear-gradient(180deg,var(--panel,#101d30),var(--ink-2,#0b1524));border:1px solid var(--line,#213650);border-radius:16px;padding:24px 26px;position:relative;overflow:hidden;max-width:420px;transition:transform .28s cubic-bezier(.22,.61,.36,1),border-color .28s,box-shadow .28s}.ds-card::after{content:\"\";position:absolute;inset:0;border-radius:16px;padding:1px;background:linear-gradient(130deg,var(--teal,#63d0d8),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .28s}.ds-card:hover{transform:translateY(-4px);border-color:transparent;box-shadow:0 24px 46px -26px rgba(0,0,0,.8)}.ds-card:hover::after{opacity:.6}.ds-card-k{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-weight:600;font-size:1.08rem;color:var(--teal,#63d0d8);margin-bottom:10px;display:flex;align-items:flex-start;gap:11px;line-height:1.3}.ds-card-k::before{content:\"\";width:9px;height:9px;border-radius:3px;margin-top:7px;flex:none;background:linear-gradient(135deg,var(--teal,#63d0d8),var(--violet,#9b82ff))}.ds-card p{font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:.92rem;line-height:1.65;color:var(--muted,#96abc0);margin:0}"
+    },
+    {
+      "name": "Sidebar Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sidebar navigation row with a leading status dot. Active state is driven by scroll position.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Experience</a><a class=\"active\" href=\"#\">Skills</a><a href=\"#\">Credentials</a></nav>",
+      "css": ".ds-nav{display:flex;flex-direction:column;gap:2px;width:220px;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif}.ds-nav a{color:var(--muted,#96abc0);text-decoration:none;font-size:.9rem;font-weight:500;padding:9px 13px;border-radius:9px;display:flex;align-items:center;gap:11px;transition:color .2s,background .2s}.ds-nav a::before{content:\"\";width:5px;height:5px;border-radius:50%;background:var(--muted-2,#6a8298);transition:background .2s,box-shadow .2s,transform .2s}.ds-nav a:hover{color:var(--paper,#eef5f9);background:var(--panel,#101d30)}.ds-nav a.active{color:var(--teal,#63d0d8);background:linear-gradient(90deg,rgba(99,208,216,.12),transparent)}.ds-nav a.active::before{background:var(--teal,#63d0d8);box-shadow:0 0 10px rgba(99,208,216,.5);transform:scale(1.4)}"
+    },
+    {
+      "name": "Value Stream Stop",
+      "kind": "custom",
+      "description": "One role on the experience timeline. The teal ring marks the Agile era; the .violet modifier marks the AI era, so the stream visibly changes colour as it approaches the present.",
+      "html": "<div class=\"ds-stream\"><div class=\"ds-stop\"><div class=\"when\">2024 &mdash; Present</div><h3>AI-Native Practice Lead</h3><div class=\"org\">Fujitsu</div><p>Heads the AI-Lean-Agile Centre of Excellence for Oceania.</p></div><div class=\"ds-stop violet\"><div class=\"when\">2019 &mdash; 2024</div><h3>SAFe Practice Lead</h3><div class=\"org\">Fujitsu Uvance</div><p>Led Lean Portfolio Management at global executive level.</p></div></div>",
+      "css": ".ds-stream{position:relative;max-width:460px;font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif}.ds-stream::before{content:\"\";position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--teal,#63d0d8),var(--violet,#9b82ff),var(--teal,#63d0d8));background-size:100% 200%;opacity:.65;animation:ds-flow 6s linear infinite}@keyframes ds-flow{0%{background-position:0 0}100%{background-position:0 -200%}}.ds-stop{position:relative;padding:0 0 42px 46px}.ds-stop:last-child{padding-bottom:0}.ds-stop::before{content:\"\";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--ink,#080f1a);border:2px solid var(--teal,#63d0d8);transition:box-shadow .3s,transform .3s;z-index:1}.ds-stop::after{content:\"\";position:absolute;left:7px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--teal,#63d0d8);box-shadow:0 0 10px rgba(99,208,216,.5)}.ds-stop.violet::before{border-color:var(--violet,#9b82ff)}.ds-stop.violet::after{background:var(--violet,#9b82ff);box-shadow:0 0 10px rgba(155,130,255,.45)}.ds-stop:hover::before{transform:scale(1.15);box-shadow:0 0 0 6px rgba(99,208,216,.1)}.ds-stop .when{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted-2,#6a8298)}.ds-stop h3{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:1.22rem;font-weight:600;letter-spacing:-.015em;margin:7px 0 3px;color:var(--paper,#eef5f9)}.ds-stop .org{color:var(--teal,#63d0d8);font-size:.9rem;font-weight:500;margin-bottom:12px}.ds-stop p{color:var(--paper-dim,#c7d5e2);font-size:.95rem;line-height:1.65;margin:0}"
+    },
+    {
+      "name": "Proof Cell",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "One cell of the four-up hero proof strip. The grid gap is the border: a 1px gap over a Line-coloured background.",
+      "html": "<div class=\"ds-proof\"><div class=\"hl\"><b>SPCT</b><span>SAFe Verified Expert, one of fewer than 200 worldwide</span></div><div><b>750+</b><span>practitioners trained &middot; NPS 89 for training delivery</span></div></div>",
+      "css": ".ds-proof{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line,#213650);border:1px solid var(--line,#213650);border-radius:16px;overflow:hidden;max-width:460px;box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 18px 40px -24px rgba(0,0,0,.7)}.ds-proof>div{background:linear-gradient(180deg,var(--panel,#101d30),var(--ink-2,#0b1524));padding:22px;transition:background .25s}.ds-proof>div:hover{background:linear-gradient(180deg,var(--panel-2,#152640),var(--panel,#101d30))}.ds-proof b{display:block;font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;font-size:1.75rem;font-weight:700;color:var(--paper,#eef5f9);letter-spacing:-.01em;line-height:1}.ds-proof .hl b{color:var(--teal,#63d0d8)}.ds-proof span{font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;font-size:.8rem;color:var(--muted,#96abc0);margin-top:9px;display:block;line-height:1.45}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Value Stream",
+    "overview": "The system takes its governing metaphor from the work it describes. A career in flow and transformation is drawn as a stream: a single lit spine runs down the experience section, teal shading into violet as the timeline moves from scaled-Agile work into AI, with each role a stop along it. Everything else in the system serves that spine. The near-black ground is not a mood choice, it is the condition that lets a signal read; the ambient wash and 64px grid behind it are the noise floor the signal sits above.\n\nThe register is assured, curious, ahead. Two readers use this page: an executive skimming for altitude and a hiring manager reading the record line by line. The system serves both by keeping one strong hierarchy and by never decorating a thing that is not carrying information. A status dot, a pulsing ring, a flowing line, a count-up: each of these is reporting something. Nothing here is ornament dressed as instrumentation.\n\nWhat the system rejects is stated plainly in PRODUCT.md and holds here. It is not the generic AI landing page, not a LinkedIn profile clone, and not a PDF poured into a browser. If a section could be lifted onto any AI product's launch page without changing a word, it is wrong.",
+    "keyCharacteristics": [
+      "Near-black ground (#080f1a) with tonal panels stacked over it; no bright surface anywhere in the dark theme",
+      "Two accents only, each with an assigned meaning: teal for signal and position, violet for change and AI",
+      "One display family carrying every heading, label and number; one body family carrying prose",
+      "Motion that reports state rather than announcing arrival",
+      "A complete second theme, not an inverted afterthought: light mode redefines all fifteen tokens",
+      "Print is a first-class target — the page is also a CV"
+    ],
+    "rules": [
+      {
+        "name": "The Two-Signal Rule",
+        "body": "Teal and violet are the entire accent vocabulary and they are not interchangeable. Teal means this is live, this is where you are, this is the credential. Violet means this is the change, this is the AI end of the story. A third accent is prohibited; Status Green is the one exception and it owns exactly one dot.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Bright-Surface Rule",
+        "body": "In the dark theme, no surface is lighter than #152640. Depth is achieved by stacking tones toward the panel end, never by introducing a light card. The one deliberate exception is client logo plates, which are white because that is what a logo needs to be legible.",
+        "section": "colors"
+      },
+      {
+        "name": "The Parity Rule",
+        "body": "Light mode is a full redefinition of all fifteen tokens, not a filter. Any new token added to the dark theme must be given a light value in the same commit.",
+        "section": "colors"
+      },
+      {
+        "name": "The Display-For-Data Rule",
+        "body": "Every number, date, credential and label is set in Bricolage, not Plex. The body font handles sentences; the display font handles anything that is a fact.",
+        "section": "typography"
+      },
+      {
+        "name": "The Measure Rule",
+        "body": "No line of prose exceeds 70ch and the hero lede stops at 60ch. Headlines cap by character count rather than percentage, so the break points survive every viewport.",
+        "section": "typography"
+      },
+      {
+        "name": "The Contact Rule",
+        "body": "Shadow is a state, not a style. If an element is not hovered, focused or emitting a signal, it has no shadow beyond the ambient card value. Adding a resting drop shadow to make something pop is forbidden; raise its tone instead.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do assign meaning before colour. Teal for live/position/credential, violet for change/AI. If a new element does not fit either meaning, it is neutral.",
+      "Do set every number, date and label in Bricolage Grotesque and every sentence in IBM Plex Sans.",
+      "Do keep prose to 70ch and the hero lede to 60ch.",
+      "Do give each new token a light-theme value in the same change.",
+      "Do verify contrast at 4.5:1 for anything under 18px, in both themes.",
+      "Do keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.",
+      "Do check the print stylesheet after any structural change. The page is also a CV.",
+      "Do honour prefers-reduced-motion: any new animation joins the existing reduce rule."
+    ],
+    "donts": [
+      "Don't build anything that reads as a generic AI landing page — gradient orb heroes, glass cards, 'supercharge your workflow' copy, purple-on-black SaaS template.",
+      "Don't let it drift toward a LinkedIn profile clone: no endorsement bars, no skill-strength meters, no wall of undifferentiated roles.",
+      "Don't let it flatten into a plain PDF resume on the web.",
+      "Don't introduce a third accent colour. Two signals, plus one green dot.",
+      "Don't place a light or white surface on the dark theme. White is reserved for client logo plates.",
+      "Don't add a resting drop shadow to lift an element. Raise its tone toward Panel 2 instead.",
+      "Don't gate content visibility on the reveal class without a fallback.",
+      "Don't use --muted-2 for small text in light mode until its value is darkened; it is currently under the AA bar.",
+      "Don't apply an eyebrow to a new section by reflex. Six already carry one, which is the system's cadence."
+    ]
+  }
+}

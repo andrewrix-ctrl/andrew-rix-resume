@@ -27,6 +27,8 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Keep design context out of the published site
+        run: rm -rf PRODUCT.md DESIGN.md CLAUDE.md .impeccable
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
