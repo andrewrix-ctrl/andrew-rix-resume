@@ -167,7 +167,7 @@ A cold, instrumented palette: two lit accents against a graded near-black, with 
 
 **The No-Bright-Surface Rule.** In the dark theme, no surface is lighter than `#152640`. Depth is achieved by stacking tones toward the panel end, never by introducing a light card. A white or near-white block on the dark theme is forbidden — with one deliberate exception: client logo plates are white, because that is what a logo needs to be legible, and their whiteness is what makes the client strip read as evidence rather than decoration.
 
-**The Parity Rule.** Light mode is a full redefinition of all fifteen tokens on `:root[data-theme="light"]`, not a filter. Any new token added to the dark theme must be given a light value in the same commit, and that value must be measured against the light ground rather than translated by eye — three of the original fifteen were translated without re-measuring and landed under the AA bar.
+**The Parity Rule.** There are three palettes, not two: dark, light, and print. Each is a full redefinition of every token, never a filter. Print takes the light values with the surfaces forced to pure white, the ink pushed to `#111`, and every glow, tint and shadow set to `transparent` / `none`. Any new token needs a value in all three in the same commit, measured against its ground rather than translated by eye — three of the original fifteen were translated without re-measuring and landed under the AA bar, and before the token-based print block a dozen elements printed near-white on white.
 
 ## 3. Typography
 
@@ -265,6 +265,7 @@ Four cells in a 1px-gap grid whose gap colour is Line, so the borders are the gr
 - **Do** keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.
 - **Do** give every `<img>` explicit `width` and `height` attributes matching the file's intrinsic size. They are what reserve the space and stop the layout shifting as images arrive. **And pair them with `width: auto` in any CSS rule that sets only `height`** — otherwise the attribute supplies the used width and the image renders squashed. This is exactly how the credential badges broke.
 - **Do** add any new top-sticky element's height to `--sticky-offset`. Anchors, and the skip link, depend on it.
+- **Do** give a new token a print value alongside its light one. Print is a palette, not an afterthought — the page is also a CV, and a colour that only exists for screen prints as whatever the dark theme left behind.
 - **Do** check the print stylesheet after any structural change. The page is also a CV, and `@media print` already strips the chrome and inverts to black-on-white.
 - **Do** honour `prefers-reduced-motion`: the existing rule kills all animation, freezes reveals visible, and cancels every hover transform. Any new animation joins it.
 

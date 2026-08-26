@@ -402,7 +402,7 @@
       },
       {
         "name": "The Parity Rule",
-        "body": "Light mode is a full redefinition of all fifteen tokens, not a filter. Any new token added to the dark theme must be given a light value in the same commit, and that value must be measured against the light ground rather than translated by eye.",
+        "body": "There are three palettes, not two: dark, light and print. Each is a full redefinition of every token. Print takes the light values with surfaces forced to white, ink at #111, and every glow, tint and shadow zeroed. A new token needs a value in all three.",
         "section": "colors"
       },
       {
@@ -446,6 +446,7 @@
       "Do give every <img> explicit width and height attributes matching the file's intrinsic size, and pair them with width: auto in any CSS rule that sets only height — otherwise the attribute supplies the used width and the image renders squashed.",
       "Do add any new top-sticky element's height to --sticky-offset; anchors and the skip link depend on it.",
       "Do keep the focus ring free of its own border-radius — it follows the element, and setting one changes the element’s shape on focus.",
+      "Do give a new token a print value alongside its light one — the page is also a CV, and a screen-only colour prints as whatever the dark theme left behind.",
       "Do check the print stylesheet after any structural change. The page is also a CV.",
       "Do honour prefers-reduced-motion: any new animation joins the existing reduce rule."
     ],
