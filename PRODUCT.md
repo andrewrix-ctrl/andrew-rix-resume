@@ -60,4 +60,4 @@ Assured, curious, ahead. Senior and settled, but visibly leaning forward — the
 
 WCAG 2.2 AA, treated as non-negotiable rather than a target — government and defence clients are among the readers, so accessibility is itself part of the credibility argument. Body text at 4.5:1 or better in both themes, visible focus states, full keyboard navigation, and reduced-motion alternatives for the reveal, count-up and ambient background animations.
 
-Known gap: the `--muted-2` grey (#66798d) used for the small uppercase labels — contact label, client-strip caption, role dates, table headers, footer — measures roughly 3.9:1 against the light-theme background, under the 4.5:1 small-text bar. It clears the bar in dark mode. Fix the light-theme value.
+The light theme's three AA failures were fixed on 2026-08-26: `--teal` (4.18:1 on the page ground) and `--muted-2` (3.93:1) were darkened to 5.05:1 and 5.02:1, and the primary button's near-black label — 2.86:1 against the violet end of its gradient — flips to white in light mode. Every remaining text pair measures above 4.5:1 in both themes.

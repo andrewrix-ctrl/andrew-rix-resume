@@ -6,7 +6,7 @@
 <title>Andrew Rix · AI-Native Practice Lead</title>
 <script>
 /* Apply saved/system colour scheme before paint to avoid a flash */
-(function(){try{var s=localStorage.getItem('theme');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches;var t=s||(p?'light':'dark');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();
+(function(){var d=document.documentElement;d.classList.add('js');try{var s=localStorage.getItem('theme');var p=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches;var t=s||(p?'light':'dark');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();
 </script>
 <meta name="description" content="Andrew Rix, AI-Native Practice Lead. AI-Native Trainer, SPCT, SAFe transformation architect. Sydney, Australia.">
 <meta name="author" content="Andrew Rix">
@@ -141,12 +141,13 @@ section{padding-top:78px;scroll-margin-top:16px}
 .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);box-shadow:0 0 8px var(--glow-teal)}
 .eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
 
-/* reveal-on-scroll */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-.reveal[data-d="1"]{transition-delay:.06s}
-.reveal[data-d="2"]{transition-delay:.12s}
-.reveal[data-d="3"]{transition-delay:.18s}
+/* reveal-on-scroll — armed only under .js (set before first paint), so a
+   script-less or headless render still paints the content it would hide */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+.js .reveal[data-d="1"]{transition-delay:.06s}
+.js .reveal[data-d="2"]{transition-delay:.12s}
+.js .reveal[data-d="3"]{transition-delay:.18s}
 
 /* hero */
 .hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;padding-top:54px;position:relative}
@@ -310,7 +311,7 @@ section{padding-top:78px;scroll-margin-top:16px}
 }
 .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 100% at 50% 0%,rgba(155,130,255,.18),transparent 60%),radial-gradient(50% 80% at 50% 100%,rgba(99,208,216,.12),transparent 60%);pointer-events:none}
 .cta *{position:relative}
-.cta h2{font-family:var(--display);font-size:2rem;font-weight:700;letter-spacing:-.025em}
+.cta h3{font-family:var(--display);font-size:2rem;font-weight:700;letter-spacing:-.025em}
 .cta p{color:var(--paper-dim);margin:14px auto 30px;max-width:48ch}
 .cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .btn{
@@ -357,7 +358,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important}
-  .reveal{opacity:1;transform:none;transition:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
   .card:hover,.btn:hover,.chip:hover,.logo-strip .plate:hover,.badge-wall img:hover,.stop:hover::before{transform:none}
 }
 
@@ -369,9 +370,9 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   .shell{display:block}
   main{padding:0}
   section{padding-top:26px;page-break-inside:avoid}
-  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:1;transform:none}
   .card,.stop .ach,.proof div,.credo,.earlier,.cta,.badge-wall{background:#fff;border-color:#ccc;color:#333;box-shadow:none}
-  .hero h2,.stop h3,.cta h2,.id h1,.card .k,.hero h2 em,.proof .hl b{color:#111;-webkit-text-fill-color:#111}
+  .hero h2,.stop h3,.cta h3,.id h1,.card .k,.hero h2 em,.proof .hl b{color:#111;-webkit-text-fill-color:#111}
   .stop p,.about-grid p{color:#222}
   .logo-strip .plate,.logo-plate{box-shadow:none;border:1px solid #ddd}
 }
@@ -384,15 +385,15 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   --panel-2:#e6eef5;
   --line:#cdd9e5;
   --line-soft:#dde6ef;
-  --teal:#0c7f88;
+  --teal:#00717a;
   --teal-deep:#0a666e;
   --violet:#5b41d6;
   --violet-deep:#4a34b8;
   --paper:#0d1c2b;
   --paper-dim:#334656;
   --muted:#4a6076;
-  --muted-2:#66798d;
-  --glow-teal:rgba(12,127,136,.35);
+  --muted-2:#56687c;
+  --glow-teal:rgba(0,113,122,.35);
   --glow-violet:rgba(91,65,214,.3);
   --shadow-card:0 1px 0 rgba(255,255,255,.6) inset,0 18px 40px -28px rgba(20,40,70,.35);
 }
@@ -405,6 +406,9 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
 :root[data-theme="light"] .mobile-top{background:rgba(234,241,246,.92)}
 :root[data-theme="light"] .badge-wall{background:radial-gradient(120% 120% at 50% 0%,rgba(12,127,136,.06),transparent 60%),#fff}
 :root[data-theme="light"] .kicker{background:#fff}
+/* the accents darken in light mode, so the near-black button label doesn't
+   hold 4.5:1 against them — the label flips instead */
+:root[data-theme="light"] .btn.primary{color:#fff}
 
 /* ---------- theme toggle ---------- */
 .theme-toggle{
@@ -520,8 +524,8 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   </div>
 </section>
 
-<section id="about">
-  <div class="eyebrow reveal">About</div>
+<section id="about" aria-labelledby="about-h">
+  <h2 class="eyebrow reveal" id="about-h">About</h2>
   <div class="about-grid">
     <div class="reveal" data-d="1">
       <p>Andrew is Fujitsu&rsquo;s AI-Native Practice Lead, heading the AI-Lean-Agile Centre of Excellence (LACE) for Oceania. He delivers AI training and enablement programmes, embeds AI solution delivery lifecycles into Fujitsu and its customers, and drives AI initiatives from inception through to production-scale rollout.</p>
@@ -535,8 +539,8 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   </div>
 </section>
 
-<section id="highlights">
-  <div class="eyebrow reveal">Career highlights</div>
+<section id="highlights" aria-labelledby="highlights-h">
+  <h2 class="eyebrow reveal" id="highlights-h">Career highlights</h2>
   <div class="cards">
     <div class="card reveal">
       <div class="k">Fujitsu Platinum Achievement Award</div>
@@ -557,8 +561,8 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   </div>
 </section>
 
-<section id="experience">
-  <div class="eyebrow reveal">Experience · the value stream</div>
+<section id="experience" aria-labelledby="experience-h">
+  <h2 class="eyebrow reveal" id="experience-h">Experience · the value stream</h2>
   <div class="stream">
 
     <div class="stop violet reveal">
@@ -669,8 +673,8 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   </div>
 </section>
 
-<section id="skills">
-  <div class="eyebrow reveal">Skills</div>
+<section id="skills" aria-labelledby="skills-h">
+  <h2 class="eyebrow reveal" id="skills-h">Skills</h2>
   <div class="skill-rows">
     <span class="chip reveal">Agile leadership and consulting</span>
     <span class="chip reveal">Executive advisory</span>
@@ -689,8 +693,8 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   </div>
 </section>
 
-<section id="certifications">
-  <div class="eyebrow reveal">Credentials</div>
+<section id="certifications" aria-labelledby="certifications-h">
+  <h2 class="eyebrow reveal" id="certifications-h">Credentials</h2>
   <div class="cert-grid">
     <div class="badge-wall reveal">
       <img class="trainer" src="" data-srcref="1" alt="AI-Native Trainer 2026 badge">
@@ -713,10 +717,10 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
   </div>
 </section>
 
-<section id="contact">
-  <div class="eyebrow reveal">Contact</div>
+<section id="contact" aria-labelledby="contact-h">
+  <h2 class="eyebrow reveal" id="contact-h">Contact</h2>
   <div class="cta reveal">
-    <h2>Let&rsquo;s talk transformation.</h2>
+    <h3>Let&rsquo;s talk transformation.</h3>
     <p>If your organisation needs to take AI from inception to production, align investment with value, or build genuine Agile and AI-Native capability, get in touch with Andrew.</p>
     <div class="row">
       <a class="btn primary" href="mailto:Andrew.Rix@fujitsu.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email Andrew</a>
@@ -751,11 +755,20 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:.8rem}
 (function(){
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els=document.querySelectorAll('.reveal');
-  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  function showAll(){for(var i=0;i<els.length;i++){els[i].classList.add('in');}}
+  /* Skip the entrance whenever it can't be trusted to run: reduced motion,
+     no observer, or a document that isn't actually on screen — a background
+     tab, a headless renderer, a link-preview screenshotter. */
+  if(reduce||!('IntersectionObserver' in window)||document.visibilityState!=='visible'){showAll();return;}
+  var fired=false;
   var io=new IntersectionObserver(function(entries){
+    fired=true;
     entries.forEach(function(en){ if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);} });
   },{rootMargin:'0px 0px -8% 0px',threshold:.08});
   els.forEach(function(e){io.observe(e);});
+  /* Failsafe: an observer that exists but never calls back must not leave
+     the whole page invisible. */
+  setTimeout(function(){if(!fired){showAll();}},1200);
 })();
 
 /* animated count-up for numeric proof stats */

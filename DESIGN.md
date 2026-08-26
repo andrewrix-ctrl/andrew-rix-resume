@@ -165,7 +165,7 @@ A cold, instrumented palette: two lit accents against a graded near-black, with 
 
 **The No-Bright-Surface Rule.** In the dark theme, no surface is lighter than `#152640`. Depth is achieved by stacking tones toward the panel end, never by introducing a light card. A white or near-white block on the dark theme is forbidden — with one deliberate exception: client logo plates are white, because that is what a logo needs to be legible, and their whiteness is what makes the client strip read as evidence rather than decoration.
 
-**The Parity Rule.** Light mode is a full redefinition of all fifteen tokens on `:root[data-theme="light"]`, not a filter. Any new token added to the dark theme must be given a light value in the same commit. Note the current gap: `--muted-2` at `#66798d` measures roughly 3.9:1 against the light ground and misses the 4.5:1 small-text bar. It must be darkened.
+**The Parity Rule.** Light mode is a full redefinition of all fifteen tokens on `:root[data-theme="light"]`, not a filter. Any new token added to the dark theme must be given a light value in the same commit, and that value must be measured against the light ground rather than translated by eye — three of the original fifteen were translated without re-measuring and landed under the AA bar.
 
 ## 3. Typography
 
@@ -209,7 +209,7 @@ Precise and quietly responsive. Every interactive element moves 2–4px and shif
 
 ### Buttons
 - **Shape:** fully rounded pill (`100px`), padding `14px 28px`, display font at 600/0.95rem, optional 17px inline SVG icon.
-- **Primary:** a 120° teal-to-violet gradient with near-black text (`#06121a`) and a teal glow beneath (`0 12px 30px -12px`). The one place the two accents are allowed to blend.
+- **Primary:** a 120° teal-to-violet gradient with a teal glow beneath (`0 12px 30px -12px`). The one place the two accents are allowed to blend. The label is near-black (`#06121a`) on the dark theme and white on the light one — the light accents are dark enough that near-black drops to 2.86:1 against the violet end.
 - **Ghost:** translucent panel fill with a Line border and Paper text.
 - **Hover / Focus:** both lift 3px. Primary swaps its glow from teal to violet; ghost shifts border and text to Signal Teal. Focus is the global ring: `2px solid var(--teal)`, offset 3px.
 
@@ -256,6 +256,6 @@ Four cells in a 1px-gap grid whose gap colour is Line, so the borders are the gr
 - **Don't** introduce a third accent colour. Two signals, plus one green dot.
 - **Don't** place a light or white surface on the dark theme. White is reserved for client logo plates, where it is doing legibility work.
 - **Don't** add a resting drop shadow to lift an element. Raise its tone toward Panel 2 instead.
-- **Don't** gate content visibility on the reveal class without a fallback. `.reveal` starts at `opacity: 0`; the IntersectionObserver adds `.in`. Any headless render, hidden tab or missing-observer path must still show the content — the current script handles this by adding `.in` immediately when the observer or motion preference is absent, and that guard must survive.
-- **Don't** use `--muted-2` for small text in light mode until its value is darkened; it is currently under the AA bar.
+- **Don't** gate content visibility on the reveal class. The hidden state lives on `.js .reveal`, and `.js` is set on `<html>` before first paint, so a script-less or headless render never sees `opacity: 0` at all. Three guards back it up: reduced motion, a missing observer, and `document.visibilityState !== 'visible'` all reveal everything immediately, and a 1200ms watchdog reveals everything if the observer exists but never calls back. All four must survive.
+- **Don't** re-lighten `--teal` (`#00717a`) or `--muted-2` (`#56687c`) in the light theme. Both sit just above 5:1 on the page ground by measurement; the earlier values were under the AA bar.
 - **Don't** apply an eyebrow to a new section by reflex. Six already carry one, which is the system's cadence — a seventh should earn it or go without.
