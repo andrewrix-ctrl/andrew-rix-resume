@@ -27,6 +27,10 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      # NOTE: this workflow is not what publishes the site. Pages is set to
+      # "Deploy from a branch", so GitHub's own Jekyll builder serves main and
+      # _config.yml is what actually keeps these files off the public site.
+      # Kept in sync in case the source is ever switched to GitHub Actions.
       - name: Keep design context out of the published site
         run: rm -rf PRODUCT.md DESIGN.md CLAUDE.md .impeccable
       - name: Upload artifact

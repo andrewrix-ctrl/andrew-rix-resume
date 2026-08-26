@@ -1,0 +1,10 @@
+# This site is published by GitHub's built-in Jekyll builder (Settings → Pages →
+# "Deploy from a branch"), not by .github/workflows/pages.yml — so anything in
+# the repo is served unless it's excluded here. DESIGN.md is the reason this
+# file exists: it opens with YAML front matter, so Jekyll rendered it into a
+# browsable /DESIGN.html.
+exclude:
+  - PRODUCT.md
+  - DESIGN.md
+  - CLAUDE.md
+  - .impeccable
