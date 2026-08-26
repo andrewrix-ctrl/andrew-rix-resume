@@ -46,7 +46,7 @@
   /* type scale — 23 ad-hoc sizes collapsed to eight steps. Tight through the
      label range because a CV needs several distinguishable small sizes, then
      opening up into display. */
-  --fs-micro:.72rem;   /* uppercase tracked labels: eyebrows, dates, captions */
+  --fs-micro:.72rem;   /* uppercase tracked labels: dates, captions, table heads */
   --fs-meta:.85rem;    /* secondary meta: issuers, contact rows, chips */
   --fs-sm:.92rem;      /* dense body: cards, timeline, tables, buttons */
   --fs-body:1rem;      /* prose */
@@ -198,14 +198,21 @@ nav a.active::before{background:var(--teal);box-shadow:0 0 10px var(--glow-teal)
 
 /* ---------- main ---------- */
 main{padding:0 60px 90px;min-width:0;scroll-margin-top:calc(var(--sticky-offset) + 16px)}
-section{padding-top:78px;scroll-margin-top:calc(var(--sticky-offset) + 16px)}
-.eyebrow{
-  font-family:var(--display);font-size:var(--fs-micro);font-weight:600;
-  text-transform:uppercase;letter-spacing:.24em;color:var(--teal);
-  display:flex;align-items:center;gap:13px;margin-bottom:20px;
+section{padding-top:92px;scroll-margin-top:calc(var(--sticky-offset) + 16px)}
+/* Section headings are headings, not kickers. These were the smallest type on
+   the page — <h2> elements set below body size, announcing themselves with
+   caps, tracking, an accent colour and two rules instead of with any
+   typographic weight of their own. Size and weight carry them now, and the
+   boundary between sections is space rather than ornament. It also gives
+   Signal Teal its meaning back: live, position, credential. A section label is
+   none of those. */
+.section-title{
+  font-family:var(--display);font-size:var(--fs-head);font-weight:600;
+  letter-spacing:-.015em;line-height:1.2;color:var(--paper);
+  text-wrap:balance;margin-bottom:26px;
 }
-.eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);box-shadow:0 0 8px var(--glow-teal)}
-.eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
+/* the one label carrying a second clause */
+.section-title span{color:var(--muted);font-weight:500}
 
 /* reveal-on-scroll — armed only under .js (set before first paint), so a
    script-less or headless render still paints the content it would hide */
@@ -427,6 +434,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
   .mobile-top nav a::before{display:none}
   .mobile-top nav a.active{background:rgba(99,208,216,.14)}
   main{padding:0 22px 64px}
+  section{padding-top:68px}
   .hero{min-height:auto;padding-top:52px}
   .proof{grid-template-columns:1fr 1fr}
   .about-grid,.cards,.cert-grid{grid-template-columns:1fr}
@@ -454,7 +462,8 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
   section{padding-top:26px;page-break-inside:avoid}
   .js .reveal{opacity:1;transform:none}
   .card,.stop .ach,.proof div,.credo,.earlier,.cta,.badge-wall{background:#fff;border-color:#ccc;color:#333;box-shadow:none}
-  .hero h2,.stop h3,.cta h3,.id h1,.card .k,.hero h2 em,.proof .hl b{color:#111;-webkit-text-fill-color:#111}
+  .hero h2,.stop h3,.cta h3,.id h1,.card .k,.hero h2 em,.proof .hl b,.section-title{color:#111;-webkit-text-fill-color:#111}
+  .section-title span{color:#444}
   .stop p,.about-grid p{color:#222}
   .logo-strip .plate,.logo-plate{box-shadow:none;border:1px solid #ddd}
 }
@@ -615,7 +624,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 </section>
 
 <section id="about" aria-labelledby="about-h">
-  <h2 class="eyebrow reveal" id="about-h">About</h2>
+  <h2 class="section-title reveal" id="about-h">About</h2>
   <div class="about-grid">
     <div class="reveal" data-d="1">
       <p>Andrew is Fujitsu&rsquo;s AI-Native Practice Lead, heading the AI-Lean-Agile Centre of Excellence (LACE) for Oceania. He delivers AI training and enablement programmes, embeds AI solution delivery lifecycles into Fujitsu and its customers, and drives AI initiatives from inception through to production-scale rollout.</p>
@@ -630,7 +639,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 </section>
 
 <section id="highlights" aria-labelledby="highlights-h">
-  <h2 class="eyebrow reveal" id="highlights-h">Career highlights</h2>
+  <h2 class="section-title reveal" id="highlights-h">Career highlights</h2>
   <div class="cards">
     <div class="card reveal">
       <div class="k">Fujitsu Platinum Achievement Award</div>
@@ -652,7 +661,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 </section>
 
 <section id="experience" aria-labelledby="experience-h">
-  <h2 class="eyebrow reveal" id="experience-h">Experience · the value stream</h2>
+  <h2 class="section-title reveal" id="experience-h">Experience <span>· the value stream</span></h2>
   <div class="stream">
 
     <div class="stop violet reveal">
@@ -764,7 +773,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 </section>
 
 <section id="skills" aria-labelledby="skills-h">
-  <h2 class="eyebrow reveal" id="skills-h">Skills</h2>
+  <h2 class="section-title reveal" id="skills-h">Skills</h2>
   <div class="skill-rows">
     <span class="chip reveal">Agile leadership and consulting</span>
     <span class="chip reveal">Executive advisory</span>
@@ -784,7 +793,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 </section>
 
 <section id="certifications" aria-labelledby="certifications-h">
-  <h2 class="eyebrow reveal" id="certifications-h">Credentials</h2>
+  <h2 class="section-title reveal" id="certifications-h">Credentials</h2>
   <div class="cert-grid">
     <div class="badge-wall reveal">
       <img class="trainer" src="assets/badge-ai-native-trainer.png" alt="AI-Native Trainer 2026 badge" width="220" height="180" decoding="async">
@@ -808,7 +817,7 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 </section>
 
 <section id="contact" aria-labelledby="contact-h">
-  <h2 class="eyebrow reveal" id="contact-h">Contact</h2>
+  <h2 class="section-title reveal" id="contact-h">Contact</h2>
   <div class="cta reveal">
     <h3>Let&rsquo;s talk transformation.</h3>
     <p>If your organisation needs to take AI from inception to production, align investment with value, or build genuine Agile and AI-Native capability, get in touch with Andrew.</p>

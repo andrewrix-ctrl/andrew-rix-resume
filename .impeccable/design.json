@@ -148,7 +148,11 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Section eyebrows, kicker, dates, table headers (--fs-micro, 0.72rem). Always the display family."
+        "purpose": "The hero kicker, dates, captions and table headers (--fs-micro, 0.72rem). Always the display family. These label data, never a section."
+      },
+      "head": {
+        "displayName": "Head",
+        "purpose": "Section headings, the sidebar name, proof-strip values (--fs-head, 1.75rem)."
       }
     },
     "shadows": [
@@ -425,6 +429,11 @@
         "name": "The Sticky-Offset Rule",
         "body": "Anything that sticks to the top of the viewport must be added to --sticky-offset, and every anchor target scrolls by calc(var(--sticky-offset) + 16px). Zero on desktop, the mobile header’s measured height below 900px.",
         "section": "elevation"
+      },
+      {
+        "name": "The Section-Heading Rule",
+        "body": "A section heading is --fs-head, sentence case, --paper, with no rule, no accent and no tracking. Ornament is not hierarchy, and the boundary between sections is space rather than a line.",
+        "section": "typography"
       }
     ],
     "dos": [
@@ -448,7 +457,7 @@
       "Don't place a light or white surface on the dark theme. White is reserved for client logo plates.",
       "Don't add a resting drop shadow to lift an element. Raise its tone toward Panel 2 instead.",
       "Don't gate content visibility on the reveal class. The hidden state lives on .js .reveal, set before first paint, and is backed by reduced-motion, missing-observer, hidden-document and 1200ms watchdog guards.",
-      "Don't apply an eyebrow to a new section by reflex. Six already carry one, which is the system's cadence.",
+      "Don't put a small uppercase tracked label above a section heading — that is the saturated 2023 kicker. Uppercase micro-labels are for data: dates, captions, table headers. Never for announcing a section.",
       "Don't re-lighten --teal (#00717a) or --muted-2 (#56687c) in the light theme; both sit just above 5:1 by measurement."
     ]
   }

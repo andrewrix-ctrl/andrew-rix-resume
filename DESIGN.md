@@ -140,7 +140,7 @@ What the system rejects is stated plainly in PRODUCT.md and holds here. It is no
 A cold, instrumented palette: two lit accents against a graded near-black, with everything else neutral so the accents stay meaningful.
 
 ### Primary
-- **Signal Teal** (`#63d0d8`): the live-signal colour. Andrew's role line, the active nav item and its glowing dot, the eyebrow rules, the emphasised phrase in the hero headline, card titles, organisation names, timeline stops, the focus ring, and text selection. Where teal appears, something is current, active or being pointed at.
+- **Signal Teal** (`#63d0d8`): the live-signal colour. Andrew's role line, the active nav item and its glowing dot, the emphasised phrase in the hero headline, card titles, organisation names, timeline stops, the focus ring, and text selection. Where teal appears, something is current, active or being pointed at. Notably **not** section headings: a section label is neither live, position, nor credential, and spending the accent on six of them diluted everything else it marks.
 - **Signal Teal Deep** (`#2e979f`): the hover border on chips, and the light-theme accent's darker partner. Never used for text on dark.
 
 ### Secondary
@@ -184,19 +184,21 @@ Eight steps, every one a token (`--fs-micro` … `--fs-hero`). No literal `font-
 
 - **`--fs-hero`** (700, `clamp(2.3rem, 5vw, 3.8rem)`, line-height 1.08, tracking -0.035em): hero headline only. Capped at `19ch` so it always breaks into three lines.
 - **`--fs-display`** (700, 2rem, tracking -0.025em): the CTA heading.
-- **`--fs-head`** (1.75rem): the sidebar name, and the proof-strip values.
+- **`--fs-head`** (1.75rem, weight 600, tracking -0.015em, `text-wrap: balance`): the six section headings, the sidebar name, and the proof-strip values.
 - **`--fs-title`** (600, 1.25rem, tracking -0.015em): timeline role headings.
 - **`--fs-lead`** (1.1rem): the hero lede at `60ch`, card titles in Signal Teal, the credo pull-quote.
 - **`--fs-body`** (400, 1rem, line-height 1.65): prose.
 - **`--fs-sm`** (0.92rem): the dense register — card bodies, timeline paragraphs (capped `70ch`), table cells, buttons.
 - **`--fs-meta`** (0.85rem): secondary meta — credential issuers, contact rows, chips, captions.
-- **`--fs-micro`** (600, 0.72rem, uppercase, tracking 0.13em–0.24em): section eyebrows, the hero kicker, dates and table headers — always the display family, never the body family.
+- **`--fs-micro`** (600, 0.72rem, uppercase, tracking 0.13em–0.24em): the hero kicker, dates, captions and table headers — always the display family, never the body family. These label *data*. They never label a section.
 
 ### Named Rules
 
 **The Display-For-Data Rule.** Every number, date, credential and label is set in Bricolage, not Plex. The body font handles sentences; the display font handles anything that is a fact. This is why the proof strip, the timeline dates and the table year column all share a texture that prose does not.
 
 **The One-Value Rule.** A size that isn't on the scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them — the twenty-three values this replaced differed by as little as 2%, which no reader has ever seen. The same rule governs radius: five steps (`--r-marker` 3px, `--r-xs` 9px, `--r-sm` 12px, `--r-md` 16px, `--r-lg` 22px) plus `--r-pill`, and circles, which are a shape rather than a step.
+
+**The Section-Heading Rule.** A section heading is set in `--fs-head`, sentence case, in `--paper`, and carries no rule, no accent and no tracking. It was the reverse until it wasn't: six `<h2>` elements at 0.72rem — the smallest type on the page, below body size — signalling "heading" through caps, tracking, teal and two rules rather than through any typographic weight of their own. Ornament is not hierarchy. The boundary between sections is space (92px, 68px on mobile), not a line.
 
 **The Measure Rule.** No line of prose exceeds 70ch and the hero lede stops at 60ch. Headlines cap by character count (`max-width: 19ch`) rather than by percentage, so the break points survive every viewport.
 
@@ -275,4 +277,4 @@ Four cells in a 1px-gap grid whose gap colour is Line, so the borders are the gr
 - **Don't** add a resting drop shadow to lift an element. Raise its tone toward Panel 2 instead.
 - **Don't** gate content visibility on the reveal class. The hidden state lives on `.js .reveal`, and `.js` is set on `<html>` before first paint, so a script-less or headless render never sees `opacity: 0` at all. Three guards back it up: reduced motion, a missing observer, and `document.visibilityState !== 'visible'` all reveal everything immediately, and a 1200ms watchdog reveals everything if the observer exists but never calls back. All four must survive.
 - **Don't** re-lighten `--teal` (`#00717a`) or `--muted-2` (`#56687c`) in the light theme. Both sit just above 5:1 on the page ground by measurement; the earlier values were under the AA bar.
-- **Don't** apply an eyebrow to a new section by reflex. Six already carry one, which is the system's cadence — a seventh should earn it or go without.
+- **Don't** put a small uppercase tracked label above a section heading. That is the saturated 2023 kicker, and this page carried six of them. Uppercase micro-labels are for data — dates, captions, table headers, the `Focus` / `Impact` tags — never for announcing a section.
