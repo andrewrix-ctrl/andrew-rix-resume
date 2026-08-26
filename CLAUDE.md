@@ -1,6 +1,8 @@
 # andrew-rix-resume
 
-Single-page personal résumé site for Andrew Rix. One file — `index.html` — carrying its own CSS, JS and base64 image payload. No build step. GitHub Actions deploys `main` to GitHub Pages.
+Single-page personal résumé site for Andrew Rix. `index.html` carries its own CSS and JS inline; images live in `assets/`. No build step.
+
+GitHub Pages publishes `main` with its built-in Jekyll builder ("Deploy from a branch") — `.github/workflows/pages.yml` runs but its artifact is never deployed. `_config.yml` is therefore what keeps PRODUCT.md, DESIGN.md, CLAUDE.md and `.impeccable/` off the public site.
 
 ## Design context
 

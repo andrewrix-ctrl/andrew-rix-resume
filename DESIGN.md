@@ -246,6 +246,7 @@ Four cells in a 1px-gap grid whose gap colour is Line, so the borders are the gr
 - **Do** give each new token a light-theme value in the same change. The light theme is a full parity theme.
 - **Do** verify contrast at 4.5:1 for anything under 18px, in both themes. Government and defence readers are in the audience and, per PRODUCT.md, *"accessibility is itself part of the credibility argument."*
 - **Do** keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.
+- **Do** give every `<img>` explicit `width` and `height` attributes matching the file's intrinsic size, even when CSS overrides both. They are what reserve the space and stop the layout shifting as images arrive.
 - **Do** check the print stylesheet after any structural change. The page is also a CV, and `@media print` already strips the chrome and inverts to black-on-white.
 - **Do** honour `prefers-reduced-motion`: the existing rule kills all animation, freezes reveals visible, and cancels every hover transform. Any new animation joins it.
 

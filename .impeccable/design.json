@@ -354,6 +354,7 @@
       "Do give each new token a light-theme value in the same change.",
       "Do verify contrast at 4.5:1 for anything under 18px, in both themes.",
       "Do keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.",
+      "Do give every <img> explicit width and height attributes matching the file's intrinsic size, even when CSS overrides both — they reserve the space and stop the layout shifting.",
       "Do check the print stylesheet after any structural change. The page is also a CV.",
       "Do honour prefers-reduced-motion: any new animation joins the existing reduce rule."
     ],
