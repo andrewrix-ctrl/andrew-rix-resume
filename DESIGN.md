@@ -49,6 +49,7 @@ typography:
     lineHeight: 1.2
     letterSpacing: "0.24em"
 rounded:
+  marker: "3px"
   xs: "9px"
   sm: "12px"
   md: "16px"
@@ -170,8 +171,10 @@ A cold, instrumented palette: two lit accents against a graded near-black, with 
 
 ## 3. Typography
 
-**Display Font:** Bricolage Grotesque (variable, `opsz 12..96`, weights 400–800), falling back to `ui-sans-serif, system-ui, sans-serif`
-**Body Font:** IBM Plex Sans (400/500/600), falling back to `ui-sans-serif, system-ui, -apple-system, sans-serif`
+**Display Font:** Bricolage Grotesque (variable, `opsz 12..96`, weight axis 400–700), falling back to `ui-sans-serif, system-ui, sans-serif`
+**Body Font:** IBM Plex Sans (variable, weight axis 400–600), falling back to `ui-sans-serif, system-ui, -apple-system, sans-serif`
+
+Both are self-hosted from `assets/fonts/` as `latin` and `latin-ext` variable subsets, declared inline with `font-display: swap` and preloaded. Nothing is fetched from a third-party origin — partly for the round trips, partly because government and defence readers shouldn't have to make a request to Google to read a CV. Both families are SIL OFL 1.1; see `assets/fonts/NOTICE.md`.
 
 **Character:** Bricolage is a wide, slightly irregular grotesque with real optical-size variation — it has personality at display sizes without tipping into novelty, which is what lets a headline about organisational change avoid reading as consultancy boilerplate. Plex Sans underneath it is flatly neutral and workmanlike, and that contrast is the point: the voice is expressive in the headline and plain in the record. The two are far enough apart on the humanist/neo-grotesque axis to read as a deliberate pair rather than two similar sans-serifs.
 
@@ -193,7 +196,7 @@ Eight steps, every one a token (`--fs-micro` … `--fs-hero`). No literal `font-
 
 **The Display-For-Data Rule.** Every number, date, credential and label is set in Bricolage, not Plex. The body font handles sentences; the display font handles anything that is a fact. This is why the proof strip, the timeline dates and the table year column all share a texture that prose does not.
 
-**The One-Value Rule.** A size that isn't on the scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them — the twenty-three values this replaced differed by as little as 2%, which no reader has ever seen.
+**The One-Value Rule.** A size that isn't on the scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them — the twenty-three values this replaced differed by as little as 2%, which no reader has ever seen. The same rule governs radius: five steps (`--r-marker` 3px, `--r-xs` 9px, `--r-sm` 12px, `--r-md` 16px, `--r-lg` 22px) plus `--r-pill`, and circles, which are a shape rather than a step.
 
 **The Measure Rule.** No line of prose exceeds 70ch and the hero lede stops at 60ch. Headlines cap by character count (`max-width: 19ch`) rather than by percentage, so the break points survive every viewport.
 
@@ -223,7 +226,7 @@ Precise and quietly responsive. Every interactive element moves 2–4px and shif
 - **Shape:** fully rounded pill (`100px`), padding `14px 28px`, display font at 600/0.95rem, optional 17px inline SVG icon.
 - **Primary:** a 120° teal-to-violet gradient with a teal glow beneath (`0 12px 30px -12px`). The one place the two accents are allowed to blend. The label is near-black (`#06121a`) on the dark theme and white on the light one — the light accents are dark enough that near-black drops to 2.86:1 against the violet end.
 - **Ghost:** translucent panel fill with a Line border and Paper text.
-- **Hover / Focus:** both lift 3px. Primary swaps its glow from teal to violet; ghost shifts border and text to Signal Teal. Focus is the global ring: `2px solid var(--teal)`, offset 3px.
+- **Hover / Focus:** both lift 3px. Primary swaps its glow from teal to violet; ghost shifts border and text to Signal Teal. Focus is the global ring: `2px solid var(--teal)`, offset 3px. The ring follows whatever radius the element already has — it must never set a radius of its own, or focusing an element changes its shape.
 
 ### Chips
 - **Style:** pill with a Panel-to-Ink-2 gradient, Line border, Paper Dim label in the display font at 0.88rem.

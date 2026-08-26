@@ -132,7 +132,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Hero headline only. Capped at 19ch so it always breaks to three lines."
+        "purpose": "Hero headline only, capped 19ch. Bricolage Grotesque, self-hosted variable subset from assets/fonts/."
       },
       "headline": {
         "displayName": "Headline",
@@ -281,6 +281,32 @@
         "name": "--fs-hero",
         "value": "clamp(2.3rem,5vw,3.8rem)"
       }
+    ],
+    "radiusScale": [
+      {
+        "name": "--r-marker",
+        "value": "3px"
+      },
+      {
+        "name": "--r-xs",
+        "value": "9px"
+      },
+      {
+        "name": "--r-sm",
+        "value": "12px"
+      },
+      {
+        "name": "--r-md",
+        "value": "16px"
+      },
+      {
+        "name": "--r-lg",
+        "value": "22px"
+      },
+      {
+        "name": "--r-pill",
+        "value": "100px"
+      }
     ]
   },
   "components": [
@@ -392,7 +418,7 @@
       },
       {
         "name": "The One-Value Rule",
-        "body": "A size that isn't on the eight-step scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them.",
+        "body": "A size that isn't on the eight-step scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them. The same rule governs radius: five steps plus --r-pill.",
         "section": "typography"
       },
       {
@@ -410,6 +436,7 @@
       "Do keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.",
       "Do give every <img> explicit width and height attributes matching the file's intrinsic size, and pair them with width: auto in any CSS rule that sets only height — otherwise the attribute supplies the used width and the image renders squashed.",
       "Do add any new top-sticky element's height to --sticky-offset; anchors and the skip link depend on it.",
+      "Do keep the focus ring free of its own border-radius — it follows the element, and setting one changes the element’s shape on focus.",
       "Do check the print stylesheet after any structural change. The page is also a CV.",
       "Do honour prefers-reduced-motion: any new animation joins the existing reduce rule."
     ],
