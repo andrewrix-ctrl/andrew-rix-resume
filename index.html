@@ -452,6 +452,65 @@ footer{margin-top:52px;text-align:center;color:var(--muted-2);font-size:var(--fs
 }
 
 /* print */
+/* ---------- light colour scheme ---------- */
+:root[data-theme="light"]{
+  --ink:#eaf1f6;
+  --ink-2:#ffffff;
+  --panel:#ffffff;
+  --panel-2:#e6eef5;
+  --line:#cdd9e5;
+  --line-soft:#dde6ef;
+  --teal:#00717a;
+  --teal-deep:#0a666e;
+  --violet:#5b41d6;
+  --violet-deep:#4a34b8;
+  --paper:#0d1c2b;
+  --paper-dim:#334656;
+  --muted:#4a6076;
+  --muted-2:#56687c;
+  --glow-teal:rgba(0,113,122,.35);
+  --glow-violet:rgba(91,65,214,.3);
+  --shadow-card:0 1px 0 rgba(255,255,255,.6) inset,0 18px 40px -28px rgba(20,40,70,.35);
+  --surface-2:#f5f9fc;
+  --violet-soft:#4a34b8;
+  --tint-teal:rgba(0,113,122,.06);
+  --kicker-bg:#ffffff;
+  --bar-bg:rgba(234,241,246,.92);
+}
+:root[data-theme="light"] body::after{opacity:.5;--line-soft:#dbe4ee}
+:root[data-theme="light"] ::selection{background:var(--teal);color:#fff}
+/* the accents darken in light mode, so the near-black button label doesn't
+   hold 4.5:1 against them — the label flips instead */
+:root[data-theme="light"] .btn.primary{color:#fff}
+
+/* ---------- theme toggle ---------- */
+.theme-toggle{
+  position:fixed;top:16px;right:16px;z-index:200;
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r-pill);padding:7px 12px;cursor:pointer;
+  color:var(--muted);font-family:var(--display);font-size:var(--fs-micro);font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  box-shadow:0 8px 24px -8px rgba(0,0,0,.4);
+  transition:color .2s,border-color .2s,background .2s;
+}
+.theme-toggle:hover{border-color:var(--teal);color:var(--teal)}
+.theme-toggle .icon{font-size:var(--fs-sm);line-height:1;opacity:.7}
+.theme-toggle .track{position:relative;width:36px;height:18px;border-radius:var(--r-pill);background:var(--line);transition:background .2s;flex:none}
+.theme-toggle .thumb{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--violet));transition:transform .2s}
+:root[data-theme="light"] .theme-toggle .thumb{transform:translateX(18px)}
+.theme-toggle .lbl{min-width:3.2em;text-align:left}
+/* docked into the empty right of the mobile header rather than floating over
+   the page, where it sat on top of whatever happened to be bottom-right */
+@media (max-width:900px){
+  .theme-toggle{top:11px;right:14px;bottom:auto;padding:13px 14px}
+  .theme-toggle .lbl{display:none}
+  /* the flanking sun/moon glyphs go too — at 110px wide the control reached
+     back into the role line on a 320px phone. The switch and its aria-label
+     carry the meaning; 64px clears every width. */
+  .theme-toggle .icon{display:none}
+}
+
 /* Print is a light surface, so it takes the light palette — but through the
    tokens, not through a list of per-selector overrides. Those covered only the
    handful of elements someone happened to notice: the lede, the skill chips,
