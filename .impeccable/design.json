@@ -121,6 +121,12 @@
         "role": "neutral",
         "displayName": "Line",
         "lightValue": "#cdd9e5"
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Surface 2",
+        "lightValue": "#f5f9fc",
+        "note": "Lower stop of every surface gradient; needs its own token because light --panel and --ink-2 are both white."
       }
     },
     "typographyMeta": {
@@ -134,15 +140,15 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Timeline role headings; card titles sit at 1.08rem in Signal Teal."
+        "purpose": "Timeline role headings (--fs-title, 1.25rem). Card titles sit at --fs-lead in Signal Teal."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "All prose. Lede 1.08rem/1.7 at 60ch; timeline paragraphs cap at 70ch."
+        "purpose": "All prose (--fs-body, 1rem). Lede at --fs-lead/1.7 capped 60ch; timeline paragraphs cap at 70ch."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Section eyebrows, kicker, dates, captions, table headers. Always the display family, never the body family."
+        "purpose": "Section eyebrows, kicker, dates, table headers (--fs-micro, 0.72rem). Always the display family."
       }
     },
     "shadows": [
@@ -236,6 +242,44 @@
       {
         "name": "shell-max",
         "value": "1320px"
+      }
+    ],
+    "typeScale": [
+      {
+        "name": "--fs-micro",
+        "value": ".72rem"
+      },
+      {
+        "name": "--fs-meta",
+        "value": ".85rem"
+      },
+      {
+        "name": "--fs-sm",
+        "value": ".92rem"
+      },
+      {
+        "name": "--fs-body",
+        "value": "1rem"
+      },
+      {
+        "name": "--fs-lead",
+        "value": "1.1rem"
+      },
+      {
+        "name": "--fs-title",
+        "value": "1.25rem"
+      },
+      {
+        "name": "--fs-head",
+        "value": "1.75rem"
+      },
+      {
+        "name": "--fs-display",
+        "value": "2rem"
+      },
+      {
+        "name": "--fs-hero",
+        "value": "clamp(2.3rem,5vw,3.8rem)"
       }
     ]
   },
@@ -345,6 +389,11 @@
         "name": "The Contact Rule",
         "body": "Shadow is a state, not a style. If an element is not hovered, focused or emitting a signal, it has no shadow beyond the ambient card value. Adding a resting drop shadow to make something pop is forbidden; raise its tone instead.",
         "section": "elevation"
+      },
+      {
+        "name": "The One-Value Rule",
+        "body": "A size that isn't on the eight-step scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them.",
+        "section": "typography"
       }
     ],
     "dos": [
@@ -354,7 +403,7 @@
       "Do give each new token a light-theme value in the same change.",
       "Do verify contrast at 4.5:1 for anything under 18px, in both themes.",
       "Do keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.",
-      "Do give every <img> explicit width and height attributes matching the file's intrinsic size, even when CSS overrides both — they reserve the space and stop the layout shifting.",
+      "Do give every <img> explicit width and height attributes matching the file's intrinsic size, and pair them with width: auto in any CSS rule that sets only height — otherwise the attribute supplies the used width and the image renders squashed.",
       "Do check the print stylesheet after any structural change. The page is also a CV.",
       "Do honour prefers-reduced-motion: any new animation joins the existing reduce rule."
     ],

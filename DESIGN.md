@@ -32,19 +32,19 @@ typography:
     letterSpacing: "-0.025em"
   title:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.22rem"
+    fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: 1.3
     letterSpacing: "-0.015em"
   body:
     fontFamily: "IBM Plex Sans, ui-sans-serif, system-ui, -apple-system, sans-serif"
-    fontSize: "16px"
+    fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "normal"
   label:
     fontFamily: "Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.73rem"
+    fontSize: "0.72rem"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.24em"
@@ -153,6 +153,7 @@ A cold, instrumented palette: two lit accents against a graded near-black, with 
 - **Ink** (`#080f1a`): the page ground, and the fill inside timeline stop rings.
 - **Ink 2** (`#0b1524`): the lower stop of every panel gradient; the darker half of a card.
 - **Panel** (`#101d30`) and **Panel 2** (`#152640`): the two raised surface tones. Cards, the proof strip, the credo block and the CTA are built from gradients between these and Ink 2.
+- **Surface 2** (`#0b1524` dark / `#f5f9fc` light): the lower stop of every surface gradient. It exists because light-theme `--panel` and `--ink-2` are both white, so the subtle top-to-bottom fall on cards, chips, the proof strip and achievement boxes needs its own token to survive the theme switch.
 - **Line** (`#213650`) and **Line Soft** (`#1a2c44`): the border and the divider. Line draws the edge of a surface; Line Soft draws separation inside one, and paints the ambient grid.
 - **Paper** (`#eef5f9`): primary text and headings.
 - **Paper Dim** (`#c7d5e2`): the lede, body prose in About and the timeline, chip labels.
@@ -175,15 +176,24 @@ A cold, instrumented palette: two lit accents against a graded near-black, with 
 **Character:** Bricolage is a wide, slightly irregular grotesque with real optical-size variation — it has personality at display sizes without tipping into novelty, which is what lets a headline about organisational change avoid reading as consultancy boilerplate. Plex Sans underneath it is flatly neutral and workmanlike, and that contrast is the point: the voice is expressive in the headline and plain in the record. The two are far enough apart on the humanist/neo-grotesque axis to read as a deliberate pair rather than two similar sans-serifs.
 
 ### Hierarchy
-- **Display** (700, `clamp(2.3rem, 5vw, 3.8rem)`, line-height 1.08, tracking -0.035em): hero headline only. Capped at `19ch` so it always breaks into three lines.
-- **Headline** (700, 2rem, tracking -0.025em): the CTA heading, and the sidebar name at 1.72rem.
-- **Title** (600, 1.22rem, tracking -0.015em): timeline role headings. Card titles sit just under it at 1.08rem in Signal Teal.
-- **Body** (400, 16px, line-height 1.65): all prose. The hero lede runs 1.08rem/1.7 at `60ch`; timeline paragraphs cap at `70ch`.
-- **Label** (600, 0.68–0.76rem, uppercase, tracking 0.13em–0.24em): section eyebrows, the hero kicker, dates, captions and table headers — all set in the display family, never the body family.
+
+Eight steps, every one a token (`--fs-micro` … `--fs-hero`). No literal `font-size` value appears anywhere in the stylesheet except the decorative quote glyph. The scale runs tight through the label range and opens up into display — a CV needs several distinguishable small sizes, and the page collapsed to eight steps from twenty-three ad-hoc values without a visible change, which is the proof the extra values were never carrying information.
+
+- **`--fs-hero`** (700, `clamp(2.3rem, 5vw, 3.8rem)`, line-height 1.08, tracking -0.035em): hero headline only. Capped at `19ch` so it always breaks into three lines.
+- **`--fs-display`** (700, 2rem, tracking -0.025em): the CTA heading.
+- **`--fs-head`** (1.75rem): the sidebar name, and the proof-strip values.
+- **`--fs-title`** (600, 1.25rem, tracking -0.015em): timeline role headings.
+- **`--fs-lead`** (1.1rem): the hero lede at `60ch`, card titles in Signal Teal, the credo pull-quote.
+- **`--fs-body`** (400, 1rem, line-height 1.65): prose.
+- **`--fs-sm`** (0.92rem): the dense register — card bodies, timeline paragraphs (capped `70ch`), table cells, buttons.
+- **`--fs-meta`** (0.85rem): secondary meta — credential issuers, contact rows, chips, captions.
+- **`--fs-micro`** (600, 0.72rem, uppercase, tracking 0.13em–0.24em): section eyebrows, the hero kicker, dates and table headers — always the display family, never the body family.
 
 ### Named Rules
 
 **The Display-For-Data Rule.** Every number, date, credential and label is set in Bricolage, not Plex. The body font handles sentences; the display font handles anything that is a fact. This is why the proof strip, the timeline dates and the table year column all share a texture that prose does not.
+
+**The One-Value Rule.** A size that isn't on the scale doesn't go in. If a new element seems to need something between two steps, it belongs on one of them — the twenty-three values this replaced differed by as little as 2%, which no reader has ever seen.
 
 **The Measure Rule.** No line of prose exceeds 70ch and the hero lede stops at 60ch. Headlines cap by character count (`max-width: 19ch`) rather than by percentage, so the break points survive every viewport.
 
@@ -246,7 +256,7 @@ Four cells in a 1px-gap grid whose gap colour is Line, so the borders are the gr
 - **Do** give each new token a light-theme value in the same change. The light theme is a full parity theme.
 - **Do** verify contrast at 4.5:1 for anything under 18px, in both themes. Government and defence readers are in the audience and, per PRODUCT.md, *"accessibility is itself part of the credibility argument."*
 - **Do** keep motion reporting state — a dot that pulses because he is available, a line that flows because it is a stream, a number that counts because it is a total.
-- **Do** give every `<img>` explicit `width` and `height` attributes matching the file's intrinsic size, even when CSS overrides both. They are what reserve the space and stop the layout shifting as images arrive.
+- **Do** give every `<img>` explicit `width` and `height` attributes matching the file's intrinsic size. They are what reserve the space and stop the layout shifting as images arrive. **And pair them with `width: auto` in any CSS rule that sets only `height`** — otherwise the attribute supplies the used width and the image renders squashed. This is exactly how the credential badges broke.
 - **Do** check the print stylesheet after any structural change. The page is also a CV, and `@media print` already strips the chrome and inverts to black-on-white.
 - **Do** honour `prefers-reduced-motion`: the existing rule kills all animation, freezes reveals visible, and cancels every hover transform. Any new animation joins it.
 
